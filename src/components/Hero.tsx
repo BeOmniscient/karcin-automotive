@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 export function Hero() {
   return (
@@ -7,6 +6,26 @@ export function Hero() {
       className="relative overflow-hidden"
       style={{ height: "100vh", minHeight: "680px", background: "#EDE0C7" }}
     >
+      <style>{`
+        @keyframes karcinReveal {
+          from { opacity: 0; transform: translate(-50%, -50%) scale(1.04); }
+          to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        @keyframes carRise {
+          from { opacity: 0; transform: translateX(-50%) translateX(-50px); }
+          to   { opacity: 1; transform: translateX(-50%) translateX(0); }
+        }
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateX(-50%) translateY(16px); }
+          to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        @keyframes scrollBounce {
+          0%, 100% { transform: translateY(0); }
+          50%       { transform: translateY(7px); }
+        }
+      `}</style>
+
+      {/* Stone texture filter */}
       <svg className="absolute w-0 h-0" aria-hidden="true">
         <defs>
           <filter id="karcin-stone" x="-5%" y="-5%" width="110%" height="110%" colorInterpolationFilters="sRGB">
@@ -32,37 +51,44 @@ export function Hero() {
       </svg>
 
       {/* Giant KARCIN typographic backdrop */}
-      <motion.div
+      <div
         aria-hidden
-        initial={{ opacity: 0, scale: 1.04 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
-        className="pointer-events-none select-none absolute inset-0 flex items-center justify-center"
-        style={{ zIndex: 0 }}
+        className="pointer-events-none select-none absolute"
+        style={{
+          top: "50%",
+          left: "50%",
+          zIndex: 0,
+          animation: "karcinReveal 1.3s cubic-bezier(0.16,1,0.3,1) 0.15s both",
+        }}
       >
         <span
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(10rem, 34.5vw, 34.5vw)",
+            fontSize: "clamp(8rem, 22vw, 22vw)",
             fontWeight: 700,
             lineHeight: 1,
             letterSpacing: "0.02em",
             color: "#C4A050",
             whiteSpace: "nowrap",
+            display: "block",
             filter: "url(#karcin-stone)",
           }}
         >
           KARCIN
         </span>
-      </motion.div>
+      </div>
 
       {/* Hero car */}
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1.35, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute left-1/2 -translate-x-1/2"
-        style={{ bottom: "10%", width: "clamp(720px, 84vw, 84vw)", zIndex: 10, mixBlendMode: "multiply" }}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "8%",
+          left: "50%",
+          width: "clamp(600px, 70vw, 70vw)",
+          zIndex: 10,
+          mixBlendMode: "multiply",
+          animation: "carRise 1.35s cubic-bezier(0.16,1,0.3,1) 0.3s both",
+        }}
       >
         <Image
           src="/images/hero-car.png"
@@ -72,15 +98,20 @@ export function Hero() {
           priority
           style={{ width: "100%", height: "auto", display: "block" }}
         />
-      </motion.div>
+      </div>
 
       {/* Bottom tagline */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.85, delay: 0.95 }}
-        className="absolute left-1/2 -translate-x-1/2 w-full text-center px-6"
-        style={{ bottom: "4%", zIndex: 20 }}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "4%",
+          left: "50%",
+          width: "100%",
+          textAlign: "center",
+          padding: "0 24px",
+          zIndex: 20,
+          animation: "fadeUp 0.85s ease-out 0.95s both",
+        }}
       >
         <div className="mx-auto mb-3 h-px w-12" style={{ background: "#B99248" }} />
         <p
@@ -91,18 +122,23 @@ export function Hero() {
           <br className="hidden md:block" />
           and dealer-backed opportunities — handled personally.
         </p>
-      </motion.div>
+      </div>
 
       {/* Scroll cue */}
-      <motion.div
-        animate={{ y: [0, 7, 0] }}
-        transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+      <div
         aria-hidden
         className="absolute hidden md:block"
-        style={{ bottom: "4.5%", right: "2.5rem", zIndex: 20, color: "#B99248", fontSize: "1.2rem" }}
+        style={{
+          bottom: "4.5%",
+          right: "2.5rem",
+          zIndex: 20,
+          color: "#B99248",
+          fontSize: "1.2rem",
+          animation: "scrollBounce 1.8s ease-in-out 1.5s infinite",
+        }}
       >
         ↓
-      </motion.div>
+      </div>
     </section>
   );
 }
