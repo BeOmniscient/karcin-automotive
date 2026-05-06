@@ -68,7 +68,7 @@ export function Hero() {
             fontWeight: 700,
             lineHeight: 1,
             letterSpacing: "0.02em",
-            color: "#C4A050",
+            color: "#d3c36a",
             whiteSpace: "nowrap",
             display: "block",
             filter: "url(#karcin-stone)",
@@ -112,10 +112,10 @@ export function Hero() {
           animation: "fadeUp 0.85s ease-out 0.95s both",
         }}
       >
-        <div className="mx-auto mb-3 h-px w-12" style={{ background: "#B99248" }} />
+        <div className="mx-auto mb-3 h-px w-12" style={{ background: "#d3c36a" }} />
         <p
           className="text-[10px] font-medium uppercase leading-[2.1] tracking-[0.28em] md:text-[11px]"
-          style={{ color: "#8E6E2E" }}
+          style={{ color: "#00042c" }}
         >
           Luxury auto brokerage, personal guidance,
           <br className="hidden md:block" />
@@ -131,7 +131,7 @@ export function Hero() {
           bottom: "4.5%",
           right: "2.5rem",
           zIndex: 20,
-          color: "#B99248",
+          color: "#d3c36a",
           fontSize: "1.2rem",
           animation: "scrollBounce 1.8s ease-in-out 1.5s infinite",
         }}

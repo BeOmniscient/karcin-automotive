@@ -3,12 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: 125 20 36;
-  --color-secondary: 248 241 231;
-  --color-accent: 216 199 167;
-  --color-neutral-dark: 26 26 26;
-  --color-neutral-light: 230 224 212;
+  --color-primary: 0 4 44;           /* prussian-blue  #00042c */
+  --color-secondary: 248 241 231;    /* parchment — page background */
+  --color-accent: 211 195 106;       /* golden-sand    #d3c36a */
+  --color-neutral-dark: 0 4 44;      /* prussian-blue  #00042c */
+  --color-neutral-light: 167 184 200;/* powder-blue    #a7b8c8 */
   --color-highlight: 255 255 255;
+  --color-deep-space: 18 52 86;      /* deep-space-blue #123456 */
+  --color-steel: 120 154 188;        /* steel-blue      #789abc */
+  --color-powder: 167 184 200;       /* powder-blue     #a7b8c8 */
 
   --font-display: "Playfair Display", "Baskerville", serif;
   --font-body: "Inter", "Montserrat", system-ui, sans-serif;
@@ -29,7 +32,7 @@ body {
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium tracking-wider uppercase transition-all duration-300;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium tracking-wider uppercase transition-all duration-300;
   }
   .btn-primary {
     @apply btn bg-primary text-highlight hover:shadow-soft hover:-translate-y-0.5;
@@ -55,5 +58,5 @@ body {
   background-color: rgb(var(--color-secondary));
   background-image:
     radial-gradient(circle at 20% 20%, rgb(var(--color-accent) / 0.18), transparent 40%),
-    radial-gradient(circle at 80% 0%, rgb(var(--color-primary) / 0.08), transparent 50%);
+    radial-gradient(circle at 80% 0%, rgb(var(--color-primary) / 0.06), transparent 50%);
 }
