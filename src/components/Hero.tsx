@@ -124,7 +124,7 @@ export function Hero() {
             transform: "translateX(-50%)",
           }}
         >
-          Your Next Vehicle,<br />Handled Personally.
+          Your Next Vehicle, Handled Personally.
         </h1>
       </div>
 
