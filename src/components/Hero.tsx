@@ -1,6 +1,20 @@
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 export function Hero() {
+  const carRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!carRef.current) return;
+      const progress = Math.min(window.scrollY / window.innerHeight, 1);
+      const offset = progress * (window.innerWidth + 900);
+      carRef.current.style.transform = `translateX(calc(-50% + ${offset}px))`;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <section
       className="relative overflow-hidden"
@@ -11,9 +25,9 @@ export function Hero() {
           from { opacity: 0; transform: translate(-50%, -50%) scale(1.04); }
           to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         }
-        @keyframes carRise {
-          from { opacity: 0; transform: translateX(-50%) translateX(-50px); }
-          to   { opacity: 1; transform: translateX(-50%) translateX(0); }
+        @keyframes carEntry {
+          from { opacity: 0; transform: translateX(-50px); }
+          to   { opacity: 1; transform: translateX(0); }
         }
         @keyframes fadeUp {
           from { opacity: 0; transform: translateX(-50%) translateY(16px); }
@@ -82,25 +96,29 @@ export function Hero() {
         </span>
       </div>
 
-      {/* Hero car */}
+      {/* Hero car — outer div owns scroll-driven position, inner div owns entry animation */}
       <div
+        ref={carRef}
         style={{
           position: "absolute",
           bottom: "calc(8% + 100px)",
           left: "50%",
           width: "clamp(600px, 70vw, 70vw)",
           zIndex: 10,
-          animation: "carRise 1.35s cubic-bezier(0.16,1,0.3,1) 0.3s both",
+          transform: "translateX(-50%)",
+          willChange: "transform",
         }}
       >
-        <Image
-          src="/images/hero-car.png"
-          alt="Dark blue luxury sedan, side profile"
-          width={1800}
-          height={750}
-          priority
-          style={{ width: "100%", height: "auto", display: "block" }}
-        />
+        <div style={{ animation: "carEntry 1.35s cubic-bezier(0.16,1,0.3,1) 0.3s both" }}>
+          <Image
+            src="/images/hero-car.png"
+            alt="Dark blue luxury sedan, side profile"
+            width={1800}
+            height={750}
+            priority
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+        </div>
       </div>
 
       {/* Hero title */}
