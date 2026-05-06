@@ -104,8 +104,8 @@ export function Hero() {
         style={{
           position: "absolute",
           top: "18%",
-          left: "50%",
-          width: "100%",
+          left: 0,
+          right: 0,
           textAlign: "center",
           padding: "0 24px",
           zIndex: 20,
@@ -121,7 +121,6 @@ export function Hero() {
             letterSpacing: "0.01em",
             color: "#00042c",
             margin: 0,
-            transform: "translateX(-50%)",
           }}
         >
           Your Next Vehicle, Handled Personally.
