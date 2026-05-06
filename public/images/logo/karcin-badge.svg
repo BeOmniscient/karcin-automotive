@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Karcin badge">
+  <circle cx="100" cy="100" r="92" fill="none" stroke="rgb(216 199 167)" stroke-width="1.5"/>
+  <circle cx="100" cy="100" r="82" fill="none" stroke="rgb(216 199 167)" stroke-width="0.75" stroke-opacity="0.5"/>
+  <g transform="translate(50 78)">
+    <path d="M14 44 L50 6 L86 44" stroke="rgb(125 20 36)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  <text x="100" y="148" text-anchor="middle" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-weight="500" font-size="11" letter-spacing="4" fill="rgb(125 20 36)">KARCIN</text>
+  <text x="100" y="166" text-anchor="middle" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-weight="500" font-size="7" letter-spacing="3" fill="rgb(216 199 167)">AUTOMOTIVE</text>
+</svg>

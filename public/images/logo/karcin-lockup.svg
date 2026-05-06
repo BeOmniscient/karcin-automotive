@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 200" role="img" aria-label="Karcin Automotive">
+  <g transform="translate(40 60) scale(1.0)">
+    <path d="M14 64 L60 18 L106 64" stroke="rgb(125 20 36)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  <text x="200" y="115" font-family="'Playfair Display', 'Baskerville', 'Times New Roman', serif" font-weight="700" font-size="92" letter-spacing="10" fill="rgb(26 26 26)">KARCIN</text>
+  <g stroke="rgb(216 199 167)" stroke-width="1.5" fill="none">
+    <line x1="200" y1="142" x2="304" y2="142"/>
+    <path d="M312 142 L322 132 L332 142" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="340" y1="142" x2="444" y2="142"/>
+  </g>
+  <text x="200" y="170" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-weight="500" font-size="16" letter-spacing="11" fill="rgb(216 199 167)">AUTOMOTIVE</text>
+</svg>

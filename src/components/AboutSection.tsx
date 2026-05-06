@@ -1,0 +1,56 @@
+import Link from "next/link";
+import { motion } from "framer-motion";
+
+export function AboutSection() {
+  return (
+    <section className="container-page py-20 md:py-28">
+      <div className="grid items-center gap-12 md:grid-cols-2">
+        <motion.div
+          initial={{ opacity: 0, x: -24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7 }}
+          className="relative aspect-[4/5] overflow-hidden rounded-xl2 bg-neutral-dark"
+        >
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-neutral-dark via-neutral-dark to-primary/40">
+            <span className="font-display text-6xl tracking-widest text-secondary/40">
+              MIKE
+            </span>
+          </div>
+          <div className="absolute bottom-6 left-6 right-6 rounded-xl bg-secondary/95 p-5 backdrop-blur">
+            <p className="font-display text-lg text-neutral-dark">Mike Napurano</p>
+            <p className="mt-1 text-xs uppercase tracking-widest text-neutral-dark/60">
+              Founder &middot; Automotive Concierge
+            </p>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+        >
+          <p className="eyebrow">About Mike</p>
+          <h2 className="mt-4 section-heading">
+            Decades of experience. A relationship-first approach.
+          </h2>
+          <p className="mt-5 body-lg">
+            Karcin Automotive was founded on a simple idea: clients deserve straight
+            answers and a smoother process. Mike brings deep industry experience and a
+            network of trusted dealership and lender partners to every search.
+          </p>
+          <p className="mt-4 body-lg">
+            No showroom games. No pressure. Just honest guidance from someone who has
+            spent his career in this business.
+          </p>
+          <div className="mt-8">
+            <Link href="/about-mike" className="btn-secondary">
+              Read Mike&rsquo;s story
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Karcin K monogram">
+  <line x1="14" y1="80" x2="146" y2="80" stroke="rgb(216 199 167)" stroke-width="1.5"/>
+  <g stroke="rgb(125 20 36)" stroke-width="14" stroke-linecap="butt" fill="none">
+    <line x1="46" y1="22" x2="46" y2="138"/>
+    <line x1="53" y1="80" x2="120" y2="22"/>
+    <line x1="53" y1="80" x2="120" y2="138"/>
+  </g>
+</svg>

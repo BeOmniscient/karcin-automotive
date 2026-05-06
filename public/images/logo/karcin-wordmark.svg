@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 220" role="img" aria-label="Karcin Automotive">
+  <text x="380" y="120" text-anchor="middle" font-family="'Playfair Display', 'Baskerville', 'Times New Roman', serif" font-weight="700" font-size="118" letter-spacing="14" fill="rgb(125 20 36)">KARCIN</text>
+  <g stroke="rgb(216 199 167)" stroke-width="1.5" fill="none">
+    <line x1="220" y1="155" x2="358" y2="155"/>
+    <path d="M368 155 L380 142 L392 155" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="402" y1="155" x2="540" y2="155"/>
+  </g>
+  <text x="380" y="195" text-anchor="middle" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-weight="500" font-size="18" letter-spacing="14" fill="rgb(216 199 167)">AUTOMOTIVE</text>
+</svg>
