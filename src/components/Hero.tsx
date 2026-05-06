@@ -99,6 +99,35 @@ export function Hero() {
         />
       </div>
 
+      {/* Hero title */}
+      <div
+        style={{
+          position: "absolute",
+          top: "18%",
+          left: "50%",
+          width: "100%",
+          textAlign: "center",
+          padding: "0 24px",
+          zIndex: 20,
+          animation: "fadeUp 0.9s ease-out 0.2s both",
+        }}
+      >
+        <h1
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.6rem, 3.2vw, 3.2rem)",
+            fontWeight: 700,
+            lineHeight: 1.15,
+            letterSpacing: "0.01em",
+            color: "#00042c",
+            margin: 0,
+            transform: "translateX(-50%)",
+          }}
+        >
+          Your Next Vehicle,<br />Handled Personally.
+        </h1>
+      </div>
+
       {/* Bottom tagline */}
       <div
         style={{
