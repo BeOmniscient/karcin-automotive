@@ -19,6 +19,10 @@ export function Hero() {
           from { opacity: 0; transform: translateX(-50%) translateY(16px); }
           to   { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
+        @keyframes fadeUpCenter {
+          from { opacity: 0; transform: translateY(16px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
         @keyframes scrollBounce {
           0%, 100% { transform: translateY(0); }
           50%       { transform: translateY(7px); }
@@ -109,7 +113,7 @@ export function Hero() {
           textAlign: "center",
           padding: "0 24px",
           zIndex: 20,
-          animation: "fadeUp 0.9s ease-out 0.2s both",
+          animation: "fadeUpCenter 0.9s ease-out 0.2s both",
         }}
       >
         <h1
