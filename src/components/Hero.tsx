@@ -55,7 +55,7 @@ export function Hero() {
         aria-hidden
         className="pointer-events-none select-none absolute"
         style={{
-          top: "50%",
+          top: "calc(50% - 100px)",
           left: "50%",
           zIndex: 0,
           animation: "karcinReveal 1.3s cubic-bezier(0.16,1,0.3,1) 0.15s both",
@@ -82,7 +82,7 @@ export function Hero() {
       <div
         style={{
           position: "absolute",
-          bottom: "8%",
+          bottom: "calc(8% + 100px)",
           left: "50%",
           width: "clamp(600px, 70vw, 70vw)",
           zIndex: 10,
