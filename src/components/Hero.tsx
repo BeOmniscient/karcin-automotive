@@ -115,7 +115,7 @@ export function Hero() {
         <div className="mx-auto mb-3 h-px w-12" style={{ background: "#d3c36a" }} />
         <p
           className="text-[10px] font-medium uppercase leading-[2.1] tracking-[0.28em] md:text-[11px]"
-          style={{ color: "#00042c" }}
+          style={{ color: "#EDE0C7" }}
         >
           Luxury auto brokerage, personal guidance,
           <br className="hidden md:block" />
