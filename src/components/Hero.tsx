@@ -1,115 +1,108 @@
-import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-grain" />
+    <section
+      className="relative overflow-hidden"
+      style={{ height: "100vh", minHeight: "680px", background: "#EDE0C7" }}
+    >
+      <svg className="absolute w-0 h-0" aria-hidden="true">
+        <defs>
+          <filter id="karcin-stone" x="-5%" y="-5%" width="110%" height="110%" colorInterpolationFilters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.55 0.65" numOctaves="5" seed="8" stitchTiles="stitch" result="noise" />
+            <feColorMatrix
+              type="matrix"
+              values="0.85 0.1 0.05 0 0.08
+                      0.60 0.2 0.10 0 0.04
+                      0.30 0.1 0.05 0 0.00
+                      0    0   0   1 0"
+              in="noise"
+              result="warmNoise"
+            />
+            <feComponentTransfer in="warmNoise" result="contrastNoise">
+              <feFuncR type="gamma" amplitude="1.4" exponent="0.65" offset="-0.05" />
+              <feFuncG type="gamma" amplitude="1.2" exponent="0.65" offset="-0.04" />
+              <feFuncB type="gamma" amplitude="0.9" exponent="0.65" offset="-0.02" />
+            </feComponentTransfer>
+            <feBlend in="SourceGraphic" in2="contrastNoise" mode="multiply" result="textured" />
+            <feComposite in="textured" in2="SourceGraphic" operator="in" />
+          </filter>
+        </defs>
+      </svg>
 
+      {/* Giant KARCIN typographic backdrop */}
       <motion.div
         aria-hidden
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 0.06, y: 0 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        className="pointer-events-none absolute inset-x-0 top-10 -z-0 select-none text-center font-display text-[18vw] font-bold leading-none tracking-[0.05em] text-primary md:text-[16rem]"
+        initial={{ opacity: 0, scale: 1.04 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
+        className="pointer-events-none select-none absolute inset-0 flex items-center justify-center"
+        style={{ zIndex: 0 }}
       >
-        KARCIN
+        <span
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(10rem, 34.5vw, 34.5vw)",
+            fontWeight: 700,
+            lineHeight: 1,
+            letterSpacing: "0.02em",
+            color: "#C4A050",
+            whiteSpace: "nowrap",
+            filter: "url(#karcin-stone)",
+          }}
+        >
+          KARCIN
+        </span>
       </motion.div>
 
-      <div className="container-page relative z-10 flex min-h-[88vh] flex-col items-center justify-center pt-12 pb-16 text-center md:pt-20">
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="eyebrow"
-        >
-          Luxury Auto Brokerage &middot; Concierge Service
-        </motion.p>
+      {/* Hero car */}
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.35, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute left-1/2 -translate-x-1/2"
+        style={{ bottom: "10%", width: "clamp(720px, 84vw, 84vw)", zIndex: 10, mixBlendMode: "multiply" }}
+      >
+        <Image
+          src="/images/hero-car.png"
+          alt="Dark blue luxury sedan, side profile"
+          width={1800}
+          height={750}
+          priority
+          style={{ width: "100%", height: "auto", display: "block" }}
+        />
+      </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-6 max-w-3xl font-display text-4xl leading-[1.05] text-neutral-dark md:text-6xl"
+      {/* Bottom tagline */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.85, delay: 0.95 }}
+        className="absolute left-1/2 -translate-x-1/2 w-full text-center px-6"
+        style={{ bottom: "4%", zIndex: 20 }}
+      >
+        <div className="mx-auto mb-3 h-px w-12" style={{ background: "#B99248" }} />
+        <p
+          className="text-[10px] font-medium uppercase leading-[2.1] tracking-[0.28em] md:text-[11px]"
+          style={{ color: "#8E6E2E" }}
         >
-          Your Next Vehicle, Handled Personally.
-        </motion.h1>
+          Luxury auto brokerage, personal guidance,
+          <br className="hidden md:block" />
+          and dealer-backed opportunities — handled personally.
+        </p>
+      </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.35 }}
-          className="mt-6 max-w-2xl body-lg"
-        >
-          We help you find lease, purchase and trade-in opportunities through trusted
-          licensed dealership partners — without the dealership stress.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-10 flex flex-col items-center gap-3 sm:flex-row"
-        >
-          <Link href="/vehicle-request" className="btn-primary">
-            Start Your Search
-          </Link>
-          <Link href="/contact" className="btn-secondary">
-            Speak With a Concierge
-          </Link>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 1.1 }}
-          className="mt-16 flex flex-wrap items-center justify-center gap-3 md:gap-6"
-        >
-          <VehicleCard label="Sport" tone="primary" />
-          <VehicleCard label="SUV" tone="accent" />
-          <VehicleCard label="Sedan" tone="dark" />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.4, delay: 1.4 }}
-          className="mt-14 flex flex-col items-center gap-2 text-xs uppercase tracking-widest text-neutral-dark/50"
-        >
-          <span>Scroll to explore</span>
-          <span className="h-10 w-px bg-neutral-dark/30" />
-        </motion.div>
-      </div>
+      {/* Scroll cue */}
+      <motion.div
+        animate={{ y: [0, 7, 0] }}
+        transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        aria-hidden
+        className="absolute hidden md:block"
+        style={{ bottom: "4.5%", right: "2.5rem", zIndex: 20, color: "#B99248", fontSize: "1.2rem" }}
+      >
+        ↓
+      </motion.div>
     </section>
-  );
-}
-
-function VehicleCard({
-  label,
-  tone,
-}: {
-  label: string;
-  tone: "primary" | "accent" | "dark";
-}) {
-  const toneMap = {
-    primary: "bg-primary text-secondary",
-    accent: "bg-accent text-neutral-dark",
-    dark: "bg-neutral-dark text-secondary",
-  } as const;
-
-  return (
-    <motion.div
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 200, damping: 18 }}
-      className={`flex h-32 w-48 flex-col justify-between rounded-xl2 px-5 py-4 shadow-card ${toneMap[tone]}`}
-    >
-      <span className="text-[10px] font-medium uppercase tracking-widest opacity-80">
-        Concept
-      </span>
-      <div>
-        <p className="font-display text-2xl leading-none">{label}</p>
-        <p className="mt-1 text-xs opacity-80">Dealer-backed opportunity</p>
-      </div>
-    </motion.div>
   );
 }
