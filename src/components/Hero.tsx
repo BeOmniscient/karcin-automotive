@@ -107,7 +107,7 @@ export function Hero() {
       <div
         style={{
           position: "absolute",
-          top: "18%",
+          top: "11%",
           left: 0,
           right: 0,
           textAlign: "center",
