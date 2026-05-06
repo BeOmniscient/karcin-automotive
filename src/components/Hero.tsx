@@ -18,7 +18,7 @@ export function Hero() {
   return (
     <section
       className="relative overflow-hidden"
-      style={{ height: "100vh", minHeight: "680px", background: "#EDE0C7" }}
+      style={{ height: "100vh", minHeight: "560px", background: "#EDE0C7" }}
     >
       <style>{`
         @keyframes karcinReveal {
@@ -29,10 +29,6 @@ export function Hero() {
           from { opacity: 0; transform: translateX(-50px); }
           to   { opacity: 1; transform: translateX(0); }
         }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateX(-50%) translateY(16px); }
-          to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
         @keyframes fadeUpCenter {
           from { opacity: 0; transform: translateY(16px); }
           to   { opacity: 1; transform: translateY(0); }
@@ -40,6 +36,73 @@ export function Hero() {
         @keyframes scrollBounce {
           0%, 100% { transform: translateY(0); }
           50%       { transform: translateY(7px); }
+        }
+
+        .hero-karcin-wrap {
+          position: absolute;
+          left: 50%;
+          top: calc(50% - 60px);
+          z-index: 0;
+          pointer-events: none;
+          user-select: none;
+          animation: karcinReveal 1.3s cubic-bezier(0.16,1,0.3,1) 0.15s both;
+        }
+        .hero-karcin {
+          font-family: var(--font-display);
+          font-size: clamp(3rem, 22vw, 22vw);
+          font-weight: 700;
+          line-height: 1;
+          letter-spacing: 0.02em;
+          color: #d3c36a;
+          white-space: nowrap;
+          display: block;
+          filter: url(#karcin-stone);
+        }
+        .hero-car-outer {
+          position: absolute;
+          left: 50%;
+          width: 90vw;
+          bottom: calc(3% + 50px);
+          z-index: 10;
+          transform: translateX(-50%);
+          will-change: transform;
+        }
+        .hero-title {
+          position: absolute;
+          top: 9%;
+          left: 0;
+          right: 0;
+          text-align: center;
+          padding: 0 24px;
+          z-index: 20;
+          animation: fadeUpCenter 0.9s ease-out 0.2s both;
+        }
+        .hero-title h1 {
+          font-family: var(--font-display);
+          font-size: clamp(1.35rem, 4vw, 3.2rem);
+          font-weight: 700;
+          line-height: 1.15;
+          letter-spacing: 0.01em;
+          color: #00042c;
+          margin: 0;
+        }
+        .hero-tagline {
+          position: absolute;
+          bottom: 4%;
+          left: 0;
+          right: 0;
+          text-align: center;
+          padding: 0 24px;
+          z-index: 20;
+          animation: fadeUpCenter 0.85s ease-out 0.95s both;
+        }
+
+        @media (min-width: 768px) {
+          .hero-karcin-wrap { top: calc(50% - 100px); }
+          .hero-karcin      { font-size: clamp(8rem, 22vw, 22vw); }
+          .hero-car-outer   { width: clamp(600px, 70vw, 70vw); bottom: calc(8% + 100px); }
+          .hero-title       { top: 11%; }
+          .hero-title h1    { font-size: clamp(1.6rem, 3.2vw, 3.2rem); }
         }
       `}</style>
 
@@ -69,46 +132,12 @@ export function Hero() {
       </svg>
 
       {/* Giant KARCIN typographic backdrop */}
-      <div
-        aria-hidden
-        className="pointer-events-none select-none absolute"
-        style={{
-          top: "calc(50% - 100px)",
-          left: "50%",
-          zIndex: 0,
-          animation: "karcinReveal 1.3s cubic-bezier(0.16,1,0.3,1) 0.15s both",
-        }}
-      >
-        <span
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(8rem, 22vw, 22vw)",
-            fontWeight: 700,
-            lineHeight: 1,
-            letterSpacing: "0.02em",
-            color: "#d3c36a",
-            whiteSpace: "nowrap",
-            display: "block",
-            filter: "url(#karcin-stone)",
-          }}
-        >
-          KARCIN
-        </span>
+      <div aria-hidden className="hero-karcin-wrap">
+        <span className="hero-karcin">KARCIN</span>
       </div>
 
-      {/* Hero car — outer div owns scroll-driven position, inner div owns entry animation */}
-      <div
-        ref={carRef}
-        style={{
-          position: "absolute",
-          bottom: "calc(8% + 100px)",
-          left: "50%",
-          width: "clamp(600px, 70vw, 70vw)",
-          zIndex: 10,
-          transform: "translateX(-50%)",
-          willChange: "transform",
-        }}
-      >
+      {/* Hero car — outer div owns scroll position, inner div owns entry animation */}
+      <div ref={carRef} className="hero-car-outer">
         <div style={{ animation: "carEntry 1.35s cubic-bezier(0.16,1,0.3,1) 0.3s both" }}>
           <Image
             src="/images/hero-car.png"
@@ -122,46 +151,12 @@ export function Hero() {
       </div>
 
       {/* Hero title */}
-      <div
-        style={{
-          position: "absolute",
-          top: "11%",
-          left: 0,
-          right: 0,
-          textAlign: "center",
-          padding: "0 24px",
-          zIndex: 20,
-          animation: "fadeUpCenter 0.9s ease-out 0.2s both",
-        }}
-      >
-        <h1
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.6rem, 3.2vw, 3.2rem)",
-            fontWeight: 700,
-            lineHeight: 1.15,
-            letterSpacing: "0.01em",
-            color: "#00042c",
-            margin: 0,
-          }}
-        >
-          Your Next Vehicle, Handled Personally.
-        </h1>
+      <div className="hero-title">
+        <h1>Your Next Vehicle, Handled Personally.</h1>
       </div>
 
       {/* Bottom tagline */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: "4%",
-          left: "50%",
-          width: "100%",
-          textAlign: "center",
-          padding: "0 24px",
-          zIndex: 20,
-          animation: "fadeUp 0.85s ease-out 0.95s both",
-        }}
-      >
+      <div className="hero-tagline">
         <div className="mx-auto mb-3 h-px w-12" style={{ background: "#d3c36a" }} />
         <p
           className="text-[10px] font-medium uppercase leading-[2.1] tracking-[0.28em] md:text-[11px]"
@@ -173,7 +168,7 @@ export function Hero() {
         </p>
       </div>
 
-      {/* Scroll cue */}
+      {/* Scroll cue — desktop only */}
       <div
         aria-hidden
         className="absolute hidden md:block"
