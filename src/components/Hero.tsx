@@ -86,7 +86,6 @@ export function Hero() {
           left: "50%",
           width: "clamp(600px, 70vw, 70vw)",
           zIndex: 10,
-          mixBlendMode: "multiply",
           animation: "carRise 1.35s cubic-bezier(0.16,1,0.3,1) 0.3s both",
         }}
       >
