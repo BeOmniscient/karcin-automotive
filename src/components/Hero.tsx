@@ -3,16 +3,23 @@ import { useEffect, useRef } from "react";
 
 export function Hero() {
   const carRef = useRef<HTMLDivElement>(null);
+  const entryDone = useRef(false);
 
   useEffect(() => {
+    // 3s animation + 0.5s delay — don't respond to scroll until the car is parked
+    const timer = setTimeout(() => { entryDone.current = true; }, 3500);
+
     const handleScroll = () => {
-      if (!carRef.current) return;
+      if (!carRef.current || !entryDone.current) return;
       const progress = Math.min(window.scrollY / window.innerHeight, 1);
       const offset = progress * (window.innerWidth + 900);
       carRef.current.style.transform = `translateX(calc(-50% + ${offset}px))`;
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
@@ -26,7 +33,7 @@ export function Hero() {
           to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         }
         @keyframes carEntry {
-          from { opacity: 0; transform: translateX(-50px); }
+          from { opacity: 1; transform: translateX(-150vw); }
           to   { opacity: 1; transform: translateX(0); }
         }
         @keyframes fadeUpCenter {
@@ -138,7 +145,7 @@ export function Hero() {
 
       {/* Hero car — outer div owns scroll position, inner div owns entry animation */}
       <div ref={carRef} className="hero-car-outer">
-        <div style={{ animation: "carEntry 1.35s cubic-bezier(0.16,1,0.3,1) 0.3s both" }}>
+        <div style={{ animation: "carEntry 3s cubic-bezier(0.25,0.1,0.25,1) 0.5s both" }}>
           <Image
             src="/images/hero-car.png"
             alt="Dark blue luxury sedan, side profile"
