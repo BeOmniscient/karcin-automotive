@@ -51,10 +51,10 @@ export function ProcessSteps() {
         {steps.map((step, idx) => (
           <motion.div
             key={step.number}
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, delay: idx * 0.08 }}
+            transition={{ duration: 0.5, delay: idx * 1, ease: "easeOut" }}
             className="rounded-xl2 bg-highlight/80 p-6 backdrop-blur" style={{ border: "2px solid #d3c36a" }}
           >
             <span className="font-display text-3xl text-primary">{step.number}</span>
