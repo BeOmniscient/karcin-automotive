@@ -21,8 +21,8 @@ export function AboutSection() {
             priority
           />
           <div className="absolute bottom-6 left-6 right-6 rounded-xl p-5" style={{ background: "#00042C" }}>
-            <p className="font-display text-lg" style={{ color: "#d3c36a" }}>Mike Napurano</p>
-            <p className="mt-1 text-xs uppercase tracking-widest" style={{ color: "#d3c36a", opacity: 0.75 }}>
+            <p className="font-display text-lg" style={{ color: "#EDE0C7" }}>Mike Napurano</p>
+            <p className="mt-1 text-xs uppercase tracking-widest" style={{ color: "#EDE0C7", opacity: 0.75 }}>
               Founder &middot; Veteran
             </p>
           </div>
