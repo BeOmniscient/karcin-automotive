@@ -84,7 +84,7 @@ export function Hero() {
           position: absolute;
           left: 50%;
           width: 95vw;
-          bottom: 55px;
+          bottom: 155px;
           z-index: 10;
           transform: translateX(-50%);
           will-change: transform;
@@ -125,7 +125,7 @@ export function Hero() {
 
         .hero-tagline {
           position: absolute;
-          bottom: 10px;
+          bottom: 110px;
           left: 0;
           right: 0;
           text-align: center;
