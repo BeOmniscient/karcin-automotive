@@ -35,17 +35,20 @@ export function AboutSection() {
           transition={{ duration: 0.7, delay: 0.1 }}
         >
           <p className="eyebrow">About Mike</p>
-          <h2 className="mt-4 section-heading">
-            Decades of experience. A relationship-first approach.
+          <h2 className="mt-4 font-display text-3xl leading-tight text-neutral-dark md:text-[2.4rem]">
+            Decades of experience.<br />A relationship-first approach.
           </h2>
           <p className="mt-5 body-lg">
-            Karcin Automotive was founded on a simple idea: clients deserve straight
-            answers and a smoother process. Mike brings deep industry experience and a
-            network of trusted dealership and lender partners to every search.
+            Karcin Automotive was built on a simple belief: every customer should feel cared for, respected, and treated like family.
           </p>
           <p className="mt-4 body-lg">
-            No showroom games. No pressure. Just honest guidance from someone who has
-            spent his career in this business.
+            A few years after returning home from Vietnam, where he served his country and earned a Purple Heart, Mike began his journey in the automotive business. More than 50 years later, he still brings the same values to every customer relationship: honesty, loyalty, patience, and a genuine desire to help.
+          </p>
+          <p className="mt-4 body-lg">
+            With decades of experience, a trusted network of dealer relationships, and access to some of America&rsquo;s best lending partners, Mike&rsquo;s mission is simple — to take the stress, confusion, and pressure out of buying or leasing a vehicle.
+          </p>
+          <p className="mt-4 body-lg">
+            At Karcin Automotive, customers get straight answers, personal guidance, and a smoother way to get into the right vehicle. Because to Mike, this business has never just been about cars. It has always been about people. No showroom games. No pressure. Just honest guidance from a friend who has spent his career in this business.
           </p>
           <div className="mt-8">
             <Link href="/about-mike" className="btn-secondary">
