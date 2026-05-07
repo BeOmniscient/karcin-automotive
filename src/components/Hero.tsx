@@ -27,8 +27,8 @@ export function Hero() {
 
   return (
     <section
-      className="relative overflow-hidden"
-      style={{ height: "100vh", minHeight: "560px", background: "#EDE0C7" }}
+      className="relative overflow-hidden hero-section"
+      style={{ background: "#EDE0C7" }}
     >
       <style>{`
         /* KARCIN sweeps in from the right — centering handled by outer div */
@@ -83,8 +83,8 @@ export function Hero() {
         .hero-car-outer {
           position: absolute;
           left: 50%;
-          width: 90vw;
-          bottom: calc(3% + 50px);
+          width: 95vw;
+          bottom: 55px;
           z-index: 10;
           transform: translateX(-50%);
           will-change: transform;
@@ -94,23 +94,30 @@ export function Hero() {
           animation: carFromRight 1.2s cubic-bezier(0.16,1,0.3,1) 1.0s both;
         }
 
-        /* H1 dissolves after car lands (~2.4 s start + 0.8 s duration) */
+        /* Use dvh so iOS Safari toolbar doesn't hide bottom content */
+        .hero-section {
+          height: 100vh;
+          height: 100dvh;
+          min-height: 600px;
+        }
+
+        /* H1 dissolves after car lands */
         .hero-title {
           position: absolute;
-          top: 9%;
+          top: 5%;
           left: 0;
           right: 0;
           text-align: center;
-          padding: 0 24px;
+          padding: 0 28px;
           z-index: 20;
           opacity: 0;
           animation: heroTitleDissolve 0.9s ease-out 2.4s forwards;
         }
         .hero-title h1 {
           font-family: var(--font-display);
-          font-size: clamp(1.35rem, 4vw, 3.2rem);
+          font-size: 2.65rem;
           font-weight: 700;
-          line-height: 1.15;
+          line-height: 1.2;
           letter-spacing: 0.01em;
           color: #00042c;
           margin: 0;
@@ -118,7 +125,7 @@ export function Hero() {
 
         .hero-tagline {
           position: absolute;
-          bottom: 4%;
+          bottom: 10px;
           left: 0;
           right: 0;
           text-align: center;
@@ -134,6 +141,7 @@ export function Hero() {
           .hero-car-outer   { width: clamp(600px, 70vw, 70vw); bottom: calc(8% + 100px); }
           .hero-title       { top: 11%; }
           .hero-title h1    { font-size: clamp(1.6rem, 3.2vw, 3.2rem); }
+          .hero-tagline     { bottom: 4%; }
         }
       `}</style>
 
