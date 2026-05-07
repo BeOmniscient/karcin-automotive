@@ -154,7 +154,7 @@ export function Hero() {
         }
 
         @media (min-width: 768px) {
-          .hero-karcin-wrap { top: calc(50% - 100px); }
+          .hero-karcin-wrap { top: calc(50% - 80px); }
           .hero-karcin      { font-size: clamp(8rem, 22vw, 22vw); }
           .hero-car-outer   { width: clamp(600px, 70vw, 70vw); bottom: calc(8% + 100px); }
           .hero-title       { top: 11%; }
