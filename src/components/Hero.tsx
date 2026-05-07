@@ -13,12 +13,19 @@ export function Hero() {
     let rafId: number | null = null;
 
     const handleScroll = () => {
-      if (!entryDone.current) return;
       if (rafId !== null) return;
       rafId = requestAnimationFrame(() => {
         rafId = null;
         if (!carRef.current || !karcinRef.current) return;
         const sy = window.scrollY;
+
+        if (!entryDone.current) {
+          // Entry still playing — only compensate vertically, no horizontal exit
+          carRef.current.style.transform    = `translateX(-50%) translateY(${sy}px)`;
+          karcinRef.current.style.transform = `translate(-50%, calc(-50% + ${sy}px))`;
+          return;
+        }
+
         const progress = Math.min(sy / (window.innerHeight * 0.35), 1);
         const offset = progress * (window.innerWidth + 900);
         // translateY(sy) cancels the section scrolling up so elements stay vertically locked
