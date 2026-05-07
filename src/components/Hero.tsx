@@ -10,17 +10,26 @@ export function Hero() {
     // KARCIN settles at ~1.3s, car settles at ~2.4s — allow 3.5s before scroll reacts
     const timer = setTimeout(() => { entryDone.current = true; }, 3500);
 
+    let rafId: number | null = null;
+
     const handleScroll = () => {
-      if (!carRef.current || !karcinRef.current || !entryDone.current) return;
-      const progress = Math.min(window.scrollY / window.innerHeight, 1);
-      const offset = progress * (window.innerWidth + 900);
-      carRef.current.style.transform    = `translateX(calc(-50% + ${offset}px))`;
-      karcinRef.current.style.transform = `translate(calc(-50% - ${offset}px), -50%)`;
+      if (!entryDone.current) return;
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        if (!carRef.current || !karcinRef.current) return;
+        // Exit completes at 35% of viewport height so elements leave quickly
+        const progress = Math.min(window.scrollY / (window.innerHeight * 0.35), 1);
+        const offset = progress * (window.innerWidth + 900);
+        carRef.current.style.transform    = `translateX(calc(-50% + ${offset}px))`;
+        karcinRef.current.style.transform = `translate(calc(-50% - ${offset}px), -50%)`;
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       clearTimeout(timer);
+      if (rafId !== null) cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -63,6 +72,7 @@ export function Hero() {
           pointer-events: none;
           user-select: none;
           transform: translate(-50%, -50%);
+          will-change: transform;
         }
         /* Inner: owns the entry animation only */
         .hero-karcin-inner {
