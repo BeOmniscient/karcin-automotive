@@ -31,14 +31,12 @@ export function BusinessSupport() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7 }}
           >
-            <p className="eyebrow text-accent">Business Vehicle Support</p>
+            <p className="eyebrow text-accent">Fleet Business Vehicles</p>
             <h2 className="mt-4 font-display text-3xl leading-tight text-secondary md:text-5xl">
-              For owners, executives, and operating teams.
+              For Business owners, executives, and operating teams.
             </h2>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-secondary/80">
-              Karcin partners with business owners on company cars, executive vehicles,
-              and small fleets — handled with discretion and aligned to your operating
-              calendar.
+              Karcin Automotive can assist business owners with company cars, executive vehicles, and small fleets — all handled with efficiency, professionalism and fiscal responsibility.
             </p>
             <div className="mt-8">
               <Link
