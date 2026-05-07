@@ -1,5 +1,18 @@
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
+
+const logos = [
+  { src: "/images/audi.png", alt: "Audi" },
+  { src: "/images/bmw.png", alt: "BMW" },
+  { src: "/images/ford.png", alt: "Ford" },
+  { src: "/images/honda.png", alt: "Honda" },
+  { src: "/images/kia.png", alt: "Kia" },
+  { src: "/images/lexus.png", alt: "Lexus" },
+  { src: "/images/mazda.png", alt: "Mazda" },
+  { src: "/images/mercedes.png", alt: "Mercedes-Benz" },
+  { src: "/images/toyota.png", alt: "Toyota" },
+];
 
 const points = [
   "We partner with multiple licensed dealerships and lenders.",
@@ -48,12 +61,18 @@ export function DealerPartners() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="grid grid-cols-3 gap-3"
           >
-            {Array.from({ length: 9 }).map((_, i) => (
+            {logos.map((logo) => (
               <div
-                key={i}
-                className="flex aspect-square items-center justify-center rounded-xl border-[2px] border-accent bg-highlight/80 text-[10px] uppercase tracking-widest text-neutral-dark/40"
+                key={logo.alt}
+                className="flex aspect-square items-center justify-center rounded-xl border-[2px] border-accent bg-highlight/80 p-4"
               >
-                Partner Logo
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={100}
+                  height={100}
+                  className="object-contain w-full h-full"
+                />
               </div>
             ))}
           </motion.div>
