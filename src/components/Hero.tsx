@@ -125,7 +125,7 @@ export function Hero() {
         }
         .hero-title h1 {
           font-family: var(--font-display);
-          font-size: min(2.2rem, 7.8vw);
+          font-size: min(2.2rem, 7.3vw);
           font-weight: 700;
           line-height: 1.2;
           letter-spacing: 0.01em;
