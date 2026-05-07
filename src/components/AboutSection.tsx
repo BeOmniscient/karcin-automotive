@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export function AboutSection() {
@@ -12,11 +13,13 @@ export function AboutSection() {
           transition={{ duration: 0.7 }}
           className="relative aspect-[4/5] overflow-hidden rounded-xl2 bg-neutral-dark"
         >
-          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-neutral-dark via-neutral-dark to-primary/40">
-            <span className="font-display text-6xl tracking-widest text-secondary/40">
-              MIKE
-            </span>
-          </div>
+          <Image
+            src="/images/mike.png"
+            alt="Mike Napurano, Founder of Karcin Automotive"
+            fill
+            className="object-cover object-top"
+            priority
+          />
           <div className="absolute bottom-6 left-6 right-6 rounded-xl bg-secondary/95 p-5 backdrop-blur">
             <p className="font-display text-lg text-neutral-dark">Mike Napurano</p>
             <p className="mt-1 text-xs uppercase tracking-widest text-neutral-dark/60">
