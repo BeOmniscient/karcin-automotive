@@ -27,9 +27,10 @@ export function Header() {
     <header
       className={`sticky top-0 z-40 w-full transition-all duration-300 ${
         scrolled
-          ? "bg-secondary/90 backdrop-blur-md shadow-soft"
-          : "bg-transparent"
+          ? "backdrop-blur-md shadow-soft"
+          : ""
       }`}
+      style={{ background: "#EDE0C7" }}
     >
       <div className="container-page flex h-20 items-center justify-between">
         <Link href="/" aria-label="Karcin Automotive home">
@@ -71,7 +72,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-neutral-dark/10 bg-secondary/95 backdrop-blur-md">
+        <div className="lg:hidden border-t border-neutral-dark/10 backdrop-blur-md" style={{ background: "#EDE0C7" }}>
           <div className="container-page flex flex-col gap-3 py-6">
             {navLinks.map((link) => (
               <Link
