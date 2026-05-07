@@ -4,9 +4,25 @@ import { useEffect, useRef } from "react";
 export function Hero() {
   const carRef    = useRef<HTMLDivElement>(null);
   const karcinRef = useRef<HTMLDivElement>(null);
+  const titleRef  = useRef<HTMLDivElement>(null);
   const entryDone = useRef(false);
 
   useEffect(() => {
+    // On desktop: pin KARCIN exactly 15px below the H1's bottom edge
+    const positionKarcin = () => {
+      if (!karcinRef.current || !titleRef.current || window.innerWidth < 768) return;
+      const section = karcinRef.current.closest("section");
+      if (!section) return;
+      const sectionRect  = section.getBoundingClientRect();
+      const titleRect    = titleRef.current.getBoundingClientRect();
+      const karcinHeight = karcinRef.current.offsetHeight;
+      const relBottom    = titleRect.bottom - sectionRect.top;
+      karcinRef.current.style.top = `${relBottom + 15 + karcinHeight / 2}px`;
+    };
+    positionKarcin();
+    document.fonts.ready.then(positionKarcin);
+    window.addEventListener("resize", positionKarcin);
+
     // KARCIN settles at ~1.3s, car settles at ~2.4s — allow 3.5s before scroll reacts
     const timer = setTimeout(() => { entryDone.current = true; }, 3500);
 
@@ -38,6 +54,7 @@ export function Hero() {
     return () => {
       clearTimeout(timer);
       if (rafId !== null) cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", positionKarcin);
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -211,7 +228,7 @@ export function Hero() {
       </div>
 
       {/* H1 — dissolves in after both elements settle */}
-      <div className="hero-title">
+      <div ref={titleRef} className="hero-title">
         <h1>YOUR NEXT<br className="hero-br-mobile" /> VEHICLE PURCHASE,<br />NEGOTIATED FOR YOU.</h1>
       </div>
 
