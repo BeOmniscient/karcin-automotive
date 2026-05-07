@@ -36,7 +36,7 @@ export function AboutSection() {
         >
           <p className="eyebrow">About Mike</p>
           <h2 className="mt-4 font-display text-3xl leading-tight text-neutral-dark md:text-[2.4rem]">
-            Decades of experience.<br />A relationship-first approach.
+            Over fifty years of experience working for you.
           </h2>
           <p className="mt-5 body-lg">
             Karcin Automotive was built on a simple belief: every customer should feel cared for, respected, and treated like family.
