@@ -18,11 +18,12 @@ export function Hero() {
       rafId = requestAnimationFrame(() => {
         rafId = null;
         if (!carRef.current || !karcinRef.current) return;
-        // Exit completes at 35% of viewport height so elements leave quickly
-        const progress = Math.min(window.scrollY / (window.innerHeight * 0.35), 1);
+        const sy = window.scrollY;
+        const progress = Math.min(sy / (window.innerHeight * 0.35), 1);
         const offset = progress * (window.innerWidth + 900);
-        carRef.current.style.transform    = `translateX(calc(-50% + ${offset}px))`;
-        karcinRef.current.style.transform = `translate(calc(-50% - ${offset}px), -50%)`;
+        // translateY(sy) cancels the section scrolling up so elements stay vertically locked
+        carRef.current.style.transform    = `translateX(calc(-50% + ${offset}px)) translateY(${sy}px)`;
+        karcinRef.current.style.transform = `translate(calc(-50% - ${offset}px), calc(-50% + ${sy}px))`;
       });
     };
 
@@ -35,10 +36,9 @@ export function Hero() {
   }, []);
 
   return (
-    <div style={{ height: '200svh' }}>
     <section
       className="relative overflow-hidden hero-section"
-      style={{ background: "#EDE0C7", position: 'sticky', top: 0 }}
+      style={{ background: "#EDE0C7" }}
     >
       <style>{`
         /* KARCIN sweeps in from the right — centering handled by outer div */
@@ -236,6 +236,5 @@ export function Hero() {
         ↓
       </div>
     </section>
-    </div>
   );
 }
