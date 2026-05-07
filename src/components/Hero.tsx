@@ -114,7 +114,7 @@ export function Hero() {
         /* H1 dissolves after car lands */
         .hero-title {
           position: absolute;
-          top: 7%;
+          top: calc(7% - 10px);
           left: 0;
           right: 0;
           text-align: center;
@@ -125,7 +125,7 @@ export function Hero() {
         }
         .hero-title h1 {
           font-family: var(--font-display);
-          font-size: min(2.2rem, 7.3vw);
+          font-size: min(2.2rem, 6.2vw);
           font-weight: 700;
           line-height: 1.2;
           letter-spacing: 0.01em;
