@@ -154,7 +154,7 @@ export function Hero() {
         }
 
         @media (min-width: 768px) {
-          .hero-karcin-wrap { top: calc(50% - 80px); }
+          .hero-karcin-wrap { top: calc(50% - 115px); }
           .hero-karcin      { font-size: clamp(8rem, 22vw, 22vw); }
           .hero-car-outer   { width: clamp(600px, 70vw, 70vw); bottom: calc(8% + 100px); }
           .hero-title       { top: 11%; }
@@ -211,7 +211,7 @@ export function Hero() {
 
       {/* H1 — dissolves in after both elements settle */}
       <div className="hero-title">
-        <h1>YOUR NEXT<br />VEHICLE PURCHASE,<br />NEGOTIATED FOR YOU.</h1>
+        <h1>YOUR NEXT<br className="md:hidden" /> VEHICLE PURCHASE,<br />NEGOTIATED FOR YOU.</h1>
       </div>
 
       {/* Bottom tagline */}
