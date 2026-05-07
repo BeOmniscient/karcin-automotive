@@ -21,8 +21,8 @@ export function RequestForm({ embedded = false }: { embedded?: boolean }) {
       preferredContact: "email",
       intent: "unsure",
       condition: "either",
-      consentCalls: false,
-      consentTexts: false,
+      consentCalls: true,
+      consentTexts: true,
       consentEmails: true,
     },
   });
