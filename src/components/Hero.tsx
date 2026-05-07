@@ -35,9 +35,10 @@ export function Hero() {
   }, []);
 
   return (
+    <div style={{ height: '200svh' }}>
     <section
       className="relative overflow-hidden hero-section"
-      style={{ background: "#EDE0C7" }}
+      style={{ background: "#EDE0C7", position: 'sticky', top: 0 }}
     >
       <style>{`
         /* KARCIN sweeps in from the right — centering handled by outer div */
@@ -235,5 +236,6 @@ export function Hero() {
         ↓
       </div>
     </section>
+    </div>
   );
 }
