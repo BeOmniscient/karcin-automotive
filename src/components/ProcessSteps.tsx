@@ -47,14 +47,20 @@ export function ProcessSteps() {
         </p>
       </div>
 
-      <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
-        {steps.map((step, idx) => (
+      <motion.div
+        className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-5"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: 1 } } }}
+      >
+        {steps.map((step) => (
           <motion.div
             key={step.number}
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5, delay: idx * 1, ease: "easeOut" }}
+            variants={{
+              hidden: { opacity: 0, x: -40 },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
+            }}
             className="rounded-xl2 bg-highlight/80 p-6 backdrop-blur" style={{ border: "2px solid #d3c36a" }}
           >
             <span className="font-display text-3xl text-primary">{step.number}</span>
@@ -64,7 +70,7 @@ export function ProcessSteps() {
             </p>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
