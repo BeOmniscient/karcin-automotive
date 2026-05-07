@@ -203,7 +203,7 @@ export function Hero() {
 
       {/* H1 — dissolves in after both elements settle */}
       <div className="hero-title">
-        <h1>YOUR NEXT<br />VEHICLE PURCHASE<br />NEGOTIATED FOR YOU.</h1>
+        <h1>YOUR NEXT<br />VEHICLE PURCHASE,<br />NEGOTIATED FOR YOU.</h1>
       </div>
 
       {/* Bottom tagline */}
