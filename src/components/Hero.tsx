@@ -7,7 +7,7 @@ export function Hero() {
 
   useEffect(() => {
     // 3s animation + 0.5s delay — don't respond to scroll until the car is parked
-    const timer = setTimeout(() => { entryDone.current = true; }, 7500);
+    const timer = setTimeout(() => { entryDone.current = true; }, 6000);
 
     const handleScroll = () => {
       if (!carRef.current || !entryDone.current) return;
@@ -145,7 +145,7 @@ export function Hero() {
 
       {/* Hero car — outer div owns scroll position, inner div owns entry animation */}
       <div ref={carRef} className="hero-car-outer">
-        <div style={{ animation: "carEntry 5s cubic-bezier(0.25,0.1,0.25,1) 2s both" }}>
+        <div style={{ animation: "carEntry 5s cubic-bezier(0.25,0.1,0.25,1) 0.5s both" }}>
           <Image
             src="/images/hero-car.png"
             alt="Dark blue luxury sedan, side profile"
