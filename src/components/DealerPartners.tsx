@@ -46,12 +46,12 @@ export function DealerPartners() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-3 gap-3"
           >
-            {Array.from({ length: 6 }).map((_, i) => (
+            {Array.from({ length: 9 }).map((_, i) => (
               <div
                 key={i}
-                className="flex aspect-[3/2] items-center justify-center rounded-xl2 border-[2px] border-accent bg-highlight/80 text-xs uppercase tracking-widest text-neutral-dark/40"
+                className="flex aspect-square items-center justify-center rounded-xl border-[2px] border-accent bg-highlight/80 text-[10px] uppercase tracking-widest text-neutral-dark/40"
               >
                 Partner Logo
               </div>
