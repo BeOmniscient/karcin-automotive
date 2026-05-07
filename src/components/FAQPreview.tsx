@@ -34,7 +34,7 @@ export function FAQPreview() {
         <h2 className="mt-4 section-heading">Common questions, answered.</h2>
       </div>
 
-      <div className="mx-auto mt-10 max-w-3xl divide-y divide-neutral-dark/10 rounded-xl2 border-[3px] border-accent bg-highlight">
+      <div className="mx-auto mt-10 max-w-3xl divide-y divide-neutral-dark/10 rounded-xl2 border-[2px] border-accent bg-highlight">
         {faqs.slice(0, 4).map((faq, idx) => (
           <FaqRow key={idx} q={faq.q} a={faq.a} />
         ))}

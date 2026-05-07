@@ -17,7 +17,7 @@ export default function DoNotSellPage() {
         description="Use this page to submit a request related to the sale or sharing of your personal information, or to request access, correction, or deletion."
       />
       <section className="container-page pb-24">
-        <div className="mx-auto max-w-2xl rounded-xl2 border-[3px] border-accent bg-highlight p-8 shadow-soft md:p-12">
+        <div className="mx-auto max-w-2xl rounded-xl2 border-[2px] border-accent bg-highlight p-8 shadow-soft md:p-12">
           <p className="text-sm leading-relaxed text-neutral-dark/80">
             To submit a privacy request, email{" "}
             <a className="text-primary underline" href="mailto:privacy@karcinauto.com">

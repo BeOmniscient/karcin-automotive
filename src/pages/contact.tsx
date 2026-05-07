@@ -42,7 +42,7 @@ export default function ContactPage() {
 
         <div
           id="schedule"
-          className="mt-12 rounded-xl2 border-[3px] border-accent bg-highlight p-8 text-center shadow-soft md:p-12"
+          className="mt-12 rounded-xl2 border-[2px] border-accent bg-highlight p-8 text-center shadow-soft md:p-12"
         >
           <p className="eyebrow">Schedule</p>
           <h2 className="mt-3 font-display text-2xl text-neutral-dark md:text-3xl">
@@ -72,7 +72,7 @@ function ContactCard({
   return (
     <a
       href={href}
-      className="group flex items-start gap-4 rounded-xl2 border-[3px] border-accent bg-highlight p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
+      className="group flex items-start gap-4 rounded-xl2 border-[2px] border-accent bg-highlight p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
     >
       <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-secondary">
         <Icon size={22} />

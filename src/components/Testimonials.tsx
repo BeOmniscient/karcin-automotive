@@ -43,7 +43,7 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
-              className="rounded-xl2 border-[3px] border-accent bg-highlight p-6 shadow-soft"
+              className="rounded-xl2 border-[2px] border-accent bg-highlight p-6 shadow-soft"
             >
               <blockquote className="text-sm leading-relaxed text-neutral-dark/80">
                 &ldquo;{t.quote}&rdquo;

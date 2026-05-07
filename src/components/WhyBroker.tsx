@@ -34,7 +34,7 @@ export function WhyBroker() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="rounded-xl2 border-[3px] border-accent bg-neutral-light/40 p-8"
+          className="rounded-xl2 border-[2px] border-accent bg-neutral-light/40 p-8"
         >
           <p className="eyebrow text-neutral-dark/60">Traditional dealership</p>
           <ul className="mt-5 space-y-3 text-sm text-neutral-dark/80">
