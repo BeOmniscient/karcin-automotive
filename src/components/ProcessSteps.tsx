@@ -39,7 +39,7 @@ export function ProcessSteps() {
       <div className="mx-auto max-w-2xl text-center">
         <p className="eyebrow">How Karcin Works</p>
         <h2 className="mt-4 section-heading">
-          A calmer path to your next vehicle.
+          A stress-free path to your next vehicle.
         </h2>
         <p className="mt-5 body-lg">
           Five simple steps from first conversation to keys in hand — coordinated through
