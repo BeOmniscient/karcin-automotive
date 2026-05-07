@@ -58,7 +58,7 @@ export function Hero() {
         .hero-karcin-wrap {
           position: absolute;
           left: 50%;
-          top: calc(50% - 60px);
+          top: 63%;
           z-index: 0;
           pointer-events: none;
           user-select: none;
@@ -94,9 +94,9 @@ export function Hero() {
           animation: carFromRight 1.2s cubic-bezier(0.16,1,0.3,1) 1.0s both;
         }
 
-        /* Use dvh so iOS Safari toolbar doesn't hide bottom content */
+        /* svh = viewport with all browser chrome visible — safest for iOS Safari */
         .hero-section {
-          height: 100vh;
+          height: 100svh;
           height: 100dvh;
           min-height: 600px;
         }
@@ -104,7 +104,7 @@ export function Hero() {
         /* H1 dissolves after car lands */
         .hero-title {
           position: absolute;
-          top: 5%;
+          top: 7%;
           left: 0;
           right: 0;
           text-align: center;
@@ -115,7 +115,7 @@ export function Hero() {
         }
         .hero-title h1 {
           font-family: var(--font-display);
-          font-size: 2.65rem;
+          font-size: 2.2rem;
           font-weight: 700;
           line-height: 1.2;
           letter-spacing: 0.01em;
