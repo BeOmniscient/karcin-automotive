@@ -109,11 +109,6 @@ export function ServicesGrid() {
           })}
         </div>
 
-        <div className="mt-12 text-center">
-          <Link href="/services" className="btn-secondary">
-            See full services
-          </Link>
-        </div>
       </div>
     </section>
   );
