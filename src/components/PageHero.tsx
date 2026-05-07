@@ -19,7 +19,7 @@ export function PageHero({
         className="mx-auto max-w-3xl text-center"
       >
         <p className="eyebrow">{eyebrow}</p>
-        <h1 className="mt-4 font-display text-4xl leading-tight text-neutral-dark md:text-6xl">
+        <h1 className="mt-4 font-display text-3xl leading-tight text-neutral-dark md:text-[2.6rem]">
           {title}
         </h1>
         {description && <p className="mt-5 body-lg">{description}</p>}
