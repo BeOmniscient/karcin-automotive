@@ -15,8 +15,8 @@ export default function AboutMikePage() {
       </Head>
       <PageHero
         eyebrow="About Mike"
-        title="Decades of automotive experience. A relationship-first approach."
-        description="Karcin was founded on the idea that clients deserve straight answers and a smoother process."
+        title={<>Decades of automotive experience.<br />A relationship-first approach.</>}
+        description="Honest guidance from someone who has spent his career in this business."
       />
       <AboutSection />
       <CTA

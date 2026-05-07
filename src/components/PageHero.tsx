@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import React from "react";
 
 export function PageHero({
   eyebrow,
@@ -6,7 +7,7 @@ export function PageHero({
   description,
 }: {
   eyebrow: string;
-  title: string;
+  title: React.ReactNode;
   description?: string;
 }) {
   return (
