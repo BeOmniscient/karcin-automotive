@@ -93,7 +93,7 @@ export function ServicesGrid() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: idx * 0.05 }}
-                className="group rounded-xl2 border border-neutral-dark/10 bg-highlight p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
+                className="group rounded-xl2 border-[3px] border-accent bg-highlight p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
               >
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-secondary">
                   <Icon size={22} />

@@ -51,7 +51,7 @@ export function DealerPartners() {
             {Array.from({ length: 6 }).map((_, i) => (
               <div
                 key={i}
-                className="flex aspect-[3/2] items-center justify-center rounded-xl2 border border-neutral-dark/10 bg-highlight/80 text-xs uppercase tracking-widest text-neutral-dark/40"
+                className="flex aspect-[3/2] items-center justify-center rounded-xl2 border-[3px] border-accent bg-highlight/80 text-xs uppercase tracking-widest text-neutral-dark/40"
               >
                 Partner Logo
               </div>

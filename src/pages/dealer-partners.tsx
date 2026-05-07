@@ -20,7 +20,7 @@ export default function DealerPartnersPage() {
       />
       <DealerPartners />
       <section className="container-page py-16">
-        <div className="mx-auto max-w-3xl rounded-xl2 border border-neutral-dark/10 bg-highlight p-8 shadow-soft">
+        <div className="mx-auto max-w-3xl rounded-xl2 border-[3px] border-accent bg-highlight p-8 shadow-soft">
           <p className="eyebrow">Compliance &amp; transparency</p>
           <h2 className="mt-3 font-display text-2xl text-neutral-dark md:text-3xl">
             Our commitments

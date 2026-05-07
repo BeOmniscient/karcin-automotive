@@ -35,10 +35,10 @@ body {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium tracking-wider uppercase transition-all duration-300;
   }
   .btn-primary {
-    @apply btn bg-primary text-highlight hover:shadow-soft hover:-translate-y-0.5;
+    @apply btn bg-primary text-highlight hover:shadow-soft hover:-translate-y-0.5 border border-accent;
   }
   .btn-secondary {
-    @apply btn border border-neutral-dark/20 bg-highlight text-neutral-dark hover:border-primary hover:text-primary;
+    @apply btn border border-accent bg-highlight text-neutral-dark hover:text-primary;
   }
   .container-page {
     @apply mx-auto w-full max-w-6xl px-6 md:px-10;

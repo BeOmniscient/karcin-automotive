@@ -9,7 +9,7 @@ export function PaymentsSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.7 }}
-        className="mx-auto max-w-3xl rounded-xl2 border border-neutral-dark/10 bg-highlight p-10 text-center shadow-soft md:p-14"
+        className="mx-auto max-w-3xl rounded-xl2 border-[3px] border-accent bg-highlight p-10 text-center shadow-soft md:p-14"
       >
         <p className="eyebrow">Concierge packages &amp; secure payments</p>
         <h2 className="mt-4 section-heading">

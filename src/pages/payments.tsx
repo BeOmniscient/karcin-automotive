@@ -18,7 +18,7 @@ export default function PaymentsPage() {
       />
 
       <section className="container-page pb-24">
-        <div className="mx-auto max-w-2xl rounded-xl2 border border-neutral-dark/10 bg-highlight p-8 shadow-card md:p-12">
+        <div className="mx-auto max-w-2xl rounded-xl2 border-[3px] border-accent bg-highlight p-8 shadow-card md:p-12">
           <p className="eyebrow">Payment details</p>
           <h2 className="mt-3 font-display text-2xl text-neutral-dark md:text-3xl">
             Stripe Checkout coming soon

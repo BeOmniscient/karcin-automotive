@@ -54,7 +54,7 @@ export default function BrandPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7 }}
-          className="rounded-xl2 border border-neutral-dark/10 bg-highlight px-8 py-20 shadow-card md:px-16 md:py-28"
+          className="rounded-xl2 border-[3px] border-accent bg-highlight px-8 py-20 shadow-card md:px-16 md:py-28"
         >
           <div className="flex justify-center">
             <VerticalLockup tone="dark" />
@@ -111,7 +111,7 @@ export default function BrandPage() {
               </p>
             </div>
             <div className="space-y-4">
-              <div className="rounded-xl2 border border-neutral-dark/10 bg-highlight px-8 py-12 shadow-soft">
+              <div className="rounded-xl2 border-[3px] border-accent bg-highlight px-8 py-12 shadow-soft">
                 <Wordmark className="mx-auto h-32 w-auto" />
               </div>
               <div className="rounded-xl2 bg-neutral-dark px-8 py-12 shadow-soft">
@@ -160,7 +160,7 @@ export default function BrandPage() {
             Horizontal &amp; stacked variants.
           </h2>
           <div className="mt-12 grid gap-5 md:grid-cols-2">
-            <div className="rounded-xl2 border border-neutral-dark/10 bg-highlight px-10 py-12 shadow-soft">
+            <div className="rounded-xl2 border-[3px] border-accent bg-highlight px-10 py-12 shadow-soft">
               <p className="eyebrow">Horizontal — light surface</p>
               <div className="mt-6 flex justify-center">
                 <HeaderLockup tone="dark" size="lg" />
@@ -190,7 +190,7 @@ export default function BrandPage() {
           {palette.map((c) => (
             <div
               key={c.hex}
-              className="overflow-hidden rounded-xl2 border border-neutral-dark/10 bg-highlight shadow-soft"
+              className="overflow-hidden rounded-xl2 border-[3px] border-accent bg-highlight shadow-soft"
             >
               <div className={`${c.tw} h-32`} aria-hidden />
               <div className="p-5">
@@ -213,7 +213,7 @@ export default function BrandPage() {
           <p className="eyebrow">06 &middot; Typography</p>
           <h2 className="mt-4 section-heading">Two voices. Clearly cast.</h2>
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            <div className="rounded-xl2 border border-neutral-dark/10 bg-highlight p-10 shadow-soft">
+            <div className="rounded-xl2 border-[3px] border-accent bg-highlight p-10 shadow-soft">
               <p className="eyebrow">Display</p>
               <p className="mt-3 font-display text-7xl text-neutral-dark">Aa</p>
               <p className="mt-2 text-sm text-neutral-dark/70">
@@ -226,7 +226,7 @@ export default function BrandPage() {
                 ABCDEFGHIJKLMNOPQRSTUVWXYZ &middot; 0123456789
               </p>
             </div>
-            <div className="rounded-xl2 border border-neutral-dark/10 bg-highlight p-10 shadow-soft">
+            <div className="rounded-xl2 border-[3px] border-accent bg-highlight p-10 shadow-soft">
               <p className="eyebrow">Body</p>
               <p className="mt-3 font-sans text-7xl font-medium text-neutral-dark">
                 Aa
@@ -307,7 +307,7 @@ function SwatchCard({
       : tone === "dark"
       ? "bg-neutral-dark"
       : "bg-highlight";
-  const border = tone === "light" ? "border border-neutral-dark/10" : "";
+  const border = tone === "light" ? "border-[3px] border-accent" : "";
   const eyebrowTone = tone === "light" ? "text-neutral-dark/55" : "text-secondary/65";
 
   return (
@@ -329,7 +329,7 @@ function SwatchCard({
 
 function FaviconPreview() {
   return (
-    <div className="rounded-xl2 border border-neutral-dark/10 bg-highlight p-6 shadow-soft">
+    <div className="rounded-xl2 border-[3px] border-accent bg-highlight p-6 shadow-soft">
       <p className="eyebrow">Favicon</p>
       <div className="mt-6 flex flex-wrap items-end gap-6">
         {[64, 32, 24, 16].map((size) => (
@@ -359,7 +359,7 @@ function FaviconPreview() {
 
 function BusinessCardPreview() {
   return (
-    <div className="rounded-xl2 border border-neutral-dark/10 bg-highlight p-6 shadow-soft">
+    <div className="rounded-xl2 border-[3px] border-accent bg-highlight p-6 shadow-soft">
       <p className="eyebrow">Business card</p>
       <div className="mt-6 space-y-3">
         <div className="flex aspect-[7/4] flex-col items-center justify-center rounded-lg bg-primary text-secondary shadow-soft">
@@ -369,7 +369,7 @@ function BusinessCardPreview() {
             Automotive
           </span>
         </div>
-        <div className="flex aspect-[7/4] flex-col justify-between rounded-lg border border-neutral-dark/10 bg-highlight p-4">
+        <div className="flex aspect-[7/4] flex-col justify-between rounded-lg border-[3px] border-accent bg-highlight p-4">
           <div>
             <p className="font-display text-sm text-neutral-dark">Mike Napurano</p>
             <p className="text-[9px] uppercase tracking-widest text-neutral-dark/60">
@@ -391,9 +391,9 @@ function BusinessCardPreview() {
 
 function SignaturePreview() {
   return (
-    <div className="rounded-xl2 border border-neutral-dark/10 bg-highlight p-6 shadow-soft">
+    <div className="rounded-xl2 border-[3px] border-accent bg-highlight p-6 shadow-soft">
       <p className="eyebrow">Email signature</p>
-      <div className="mt-6 rounded-lg border border-neutral-dark/10 bg-secondary/60 p-5">
+      <div className="mt-6 rounded-lg border-[3px] border-accent bg-secondary/60 p-5">
         <div className="flex items-center gap-3">
           <ApexMark className="h-6 w-auto text-primary" />
           <div>

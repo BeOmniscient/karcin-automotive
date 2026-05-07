@@ -23,7 +23,7 @@ export default function FAQPage() {
       />
 
       <section className="container-page pb-16">
-        <div className="mx-auto max-w-3xl divide-y divide-neutral-dark/10 rounded-xl2 border border-neutral-dark/10 bg-highlight">
+        <div className="mx-auto max-w-3xl divide-y divide-neutral-dark/10 rounded-xl2 border-[3px] border-accent bg-highlight">
           {faqs.map((faq, idx) => (
             <Row key={idx} q={faq.q} a={faq.a} />
           ))}

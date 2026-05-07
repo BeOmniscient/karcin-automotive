@@ -57,7 +57,7 @@ export function RequestForm({ embedded = false }: { embedded?: boolean }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.7 }}
-        className="rounded-xl2 border border-neutral-dark/10 bg-highlight p-8 shadow-card md:p-12"
+        className="rounded-xl2 border-[3px] border-accent bg-highlight p-8 shadow-card md:p-12"
       >
         {!embedded && (
           <div className="mx-auto max-w-2xl text-center">
@@ -230,7 +230,7 @@ export function RequestForm({ embedded = false }: { embedded?: boolean }) {
               />
             </Field>
 
-            <fieldset className="md:col-span-2 rounded-xl border border-neutral-dark/10 bg-secondary/60 p-5">
+            <fieldset className="md:col-span-2 rounded-xl border-[3px] border-accent bg-secondary/60 p-5">
               <legend className="px-2 text-xs font-medium uppercase tracking-widest text-neutral-dark/70">
                 Communication consent
               </legend>
