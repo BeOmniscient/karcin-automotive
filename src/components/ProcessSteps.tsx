@@ -9,7 +9,7 @@ const steps = [
   },
   {
     number: "02",
-    title: "We search dealer-backed options",
+    title: "We search for available vehicles",
     description:
       "Karcin connects with licensed dealership and lender partners to identify real opportunities for you.",
   },
