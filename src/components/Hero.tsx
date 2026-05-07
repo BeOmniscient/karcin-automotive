@@ -58,7 +58,7 @@ export function Hero() {
         .hero-karcin-wrap {
           position: absolute;
           left: 50%;
-          top: 63%;
+          top: calc(63% - 175px);
           z-index: 0;
           pointer-events: none;
           user-select: none;
@@ -84,7 +84,7 @@ export function Hero() {
           position: absolute;
           left: 50%;
           width: 95vw;
-          bottom: 155px;
+          bottom: 305px;
           z-index: 10;
           transform: translateX(-50%);
           will-change: transform;
