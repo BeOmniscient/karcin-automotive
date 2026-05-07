@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { PageHero } from "@/components/PageHero";
 import { ServicesGrid } from "@/components/ServicesGrid";
-import { PaymentsSection } from "@/components/PaymentsSection";
 import { CTA } from "@/components/CTA";
 
 export default function ServicesPage() {
@@ -20,7 +19,6 @@ export default function ServicesPage() {
         description="From a quick lease search to coordinating a full business fleet."
       />
       <ServicesGrid />
-      <PaymentsSection />
       <CTA />
     </>
   );
