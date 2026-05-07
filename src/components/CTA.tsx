@@ -14,7 +14,7 @@ type CTAProps = {
 export function CTA({
   eyebrow = "Ready when you are",
   title = "Tell us what you want. We&rsquo;ll help you find it.",
-  description = "Start your search or speak with a concierge — there&rsquo;s no obligation.",
+  description = "Start your search or speak with a concierge — there's no obligation.",
   primaryHref = "/vehicle-request",
   primaryLabel = "Start Your Search",
   secondaryHref = "/contact",
