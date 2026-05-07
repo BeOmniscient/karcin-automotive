@@ -145,7 +145,7 @@ export function Hero() {
 
       {/* Hero car — outer div owns scroll position, inner div owns entry animation */}
       <div ref={carRef} className="hero-car-outer">
-        <div style={{ animation: "carEntry 5s cubic-bezier(0.25,0.1,0.25,1) 2s both" }}>
+        <div style={{ animation: "carEntry 5s cubic-bezier(0.25,0.1,0.25,1) 2s both", background: "#EDE0C7" }}>
           <Image
             src="/images/hero-car.png"
             alt="Dark blue luxury sedan, side profile"
