@@ -19,6 +19,24 @@ const placeholders = [
     name: "Customer Name",
     detail: "Vehicle / City",
   },
+  {
+    quote:
+      "Add a fourth customer story here. Karcin will populate this section after launch with verified reviews.",
+    name: "Customer Name",
+    detail: "Vehicle / City",
+  },
+  {
+    quote:
+      "Add a fifth customer story here. Real, verified testimonials reinforce our compliance commitment.",
+    name: "Customer Name",
+    detail: "Vehicle / City",
+  },
+  {
+    quote:
+      "Add a sixth customer story here. We avoid unverified or exaggerated claims.",
+    name: "Customer Name",
+    detail: "Vehicle / City",
+  },
 ];
 
 export function Testimonials() {
