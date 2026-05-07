@@ -159,7 +159,7 @@ export function Hero() {
 
       {/* Hero title */}
       <div className="hero-title">
-        <h1>Your Next Vehicle, Handled Personally.</h1>
+        <h1 style={{ color: "#00042C" }}>Your Next Vehicle, Handled Personally.</h1>
       </div>
 
       {/* Bottom tagline */}
