@@ -11,7 +11,7 @@ export function PageHero({
   description?: string;
 }) {
   return (
-    <section className="container-page pb-12 pt-16 md:pb-16 md:pt-24">
+    <section className="container-page pb-6 pt-16 md:pb-8 md:pt-24">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export function AboutSection() {
   return (
-    <section className="container-page py-20 md:py-28">
+    <section className="container-page pt-10 pb-20 md:pt-14 md:pb-28">
       <div className="grid items-center gap-12 md:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, x: -24 }}
