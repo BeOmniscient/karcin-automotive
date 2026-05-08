@@ -68,20 +68,22 @@ const services: Service[] = [
   },
 ];
 
-export function ServicesGrid() {
+export function ServicesGrid({ showHeading = true }: { showHeading?: boolean }) {
   return (
     <section className="bg-secondary/60 py-20 md:py-28">
       <div className="container-page">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow">Services</p>
-          <h2 className="mt-4 section-heading">
-            Everything you need, handled for you.
-          </h2>
-          <p className="mt-5 body-lg">
-            From a quick lease search to coordinating a full business fleet, Karcin is
-            your single point of contact through every step.
-          </p>
-        </div>
+        {showHeading && (
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="eyebrow">Services</p>
+            <h2 className="mt-4 section-heading">
+              Everything you need, handled for you.
+            </h2>
+            <p className="mt-5 body-lg">
+              From a quick lease search to coordinating a full business fleet, Karcin is
+              your single point of contact through every step.
+            </p>
+          </div>
+        )}
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service, idx) => {

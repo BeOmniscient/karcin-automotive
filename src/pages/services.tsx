@@ -18,7 +18,7 @@ export default function ServicesPage() {
         title="Everything you need, handled for you."
         description="From a quick lease search to coordinating a full business fleet."
       />
-      <ServicesGrid />
+      <ServicesGrid showHeading={false} />
       <CTA />
     </>
   );
