@@ -50,11 +50,6 @@ export function AboutSection() {
           <p className="mt-4 body-lg">
             At Karcin Automotive, customers get straight answers, personal guidance, and a smoother way to get into the right vehicle. Because to Mike, this business has never just been about cars. It has always been about people. No showroom games. No pressure. Just honest guidance from a friend who has spent his career in this business.
           </p>
-          <div className="mt-8">
-            <Link href="/about-mike" className="btn-secondary">
-              Read Mike&rsquo;s story
-            </Link>
-          </div>
         </motion.div>
       </div>
     </section>
