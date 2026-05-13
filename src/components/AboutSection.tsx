@@ -42,7 +42,7 @@ export function AboutSection() {
             Karcin Automotive was built on a simple belief: every customer should feel cared for, respected, and treated like family.
           </p>
           <p className="mt-4 body-lg">
-            A few years after returning home from Vietnam, where he served his country and earned a Purple Heart, Mike began his journey in the automotive business. More than 50 years later, he still brings the same values to every customer relationship: honesty, loyalty, patience, and a genuine desire to help.
+            A few years after returning home from Vietnam, where he served his country and earned a Purple Heart and Bronze Star, Mike began his journey in the automotive business. More than 50 years later, he still brings the same values to every customer relationship: honesty, loyalty, patience, and a genuine desire to help.
           </p>
           <p className="mt-4 body-lg">
             With decades of experience, a trusted network of dealer relationships, and access to some of America&rsquo;s best lending partners, Mike&rsquo;s mission is simple — to take the stress, confusion, and pressure out of buying or leasing a vehicle.
