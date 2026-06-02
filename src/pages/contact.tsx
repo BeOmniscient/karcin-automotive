@@ -22,9 +22,9 @@ export default function ContactPage() {
         <div className="grid gap-6 md:grid-cols-3">
           <ContactCard
             Icon={HiOutlinePhone}
-            label="Call us"
-            value="(000) 000-0000"
-            href="tel:+10000000000"
+            label="Call or text us 24/7"
+            value="(973) 218-4898"
+            href="tel:+19732184898"
           />
           <ContactCard
             Icon={HiOutlineMail}

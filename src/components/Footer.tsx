@@ -62,8 +62,8 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="tel:+10000000000" className="hover:text-accent">
-                  (000) 000-0000
+                <a href="tel:+19732184898" className="hover:text-accent">
+                  (973) 218-4898
                 </a>
               </li>
               <li>

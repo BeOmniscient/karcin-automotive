@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { HiOutlinePhone } from "react-icons/hi";
 import { HeaderLockup } from "./Logo";
+import { PHONE_TEL } from "@/lib/site";
 
 const navLinks = [
   { href: "/how-it-works", label: "How It Works" },
@@ -49,7 +51,14 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-3 lg:flex">
+          <a
+            href={PHONE_TEL}
+            className="inline-flex items-center gap-2 rounded-full border border-primary/40 px-4 py-2 text-sm font-semibold text-primary transition hover:border-primary hover:bg-primary/5"
+          >
+            <HiOutlinePhone className="h-4 w-4" />
+            Call 24/7
+          </a>
           <Link href="/vehicle-request" className="btn-primary">
             Start Your Search
           </Link>
@@ -84,6 +93,14 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+            <a
+              href={PHONE_TEL}
+              onClick={() => setOpen(false)}
+              className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full border border-primary/40 px-4 py-2.5 text-sm font-semibold text-primary"
+            >
+              <HiOutlinePhone className="h-4 w-4" />
+              Call 24/7
+            </a>
             <Link
               href="/vehicle-request"
               onClick={() => setOpen(false)}

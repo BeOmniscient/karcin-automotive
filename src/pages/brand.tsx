@@ -405,7 +405,7 @@ function SignaturePreview() {
         </div>
         <div className="mt-3 h-px bg-accent" />
         <p className="mt-3 text-[11px] text-neutral-dark/70">
-          karcinauto.com &middot; (000) 000-0000
+          karcinauto.com &middot; (973) 218-4898
         </p>
         <p className="mt-2 text-[10px] leading-snug text-neutral-dark/55">
           Karcin Automotive is an independent brokerage. Vehicle transactions
