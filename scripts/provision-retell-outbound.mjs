@@ -56,6 +56,23 @@ async function call(path, body, method = "POST") {
   return JSON.parse(text);
 }
 
+// Agent-level settings (not LLM) — pulled from the spec, applied on create + update.
+function pickAgentSettings(s) {
+  const keys = [
+    "pronunciation_dictionary",
+    "end_call_after_silence_ms",
+    "reminder_trigger_ms",
+    "reminder_max_count",
+    "interruption_sensitivity",
+    "responsiveness",
+    "voice_speed",
+    "voice_temperature"
+  ];
+  const out = {};
+  for (const k of keys) if (s[k] !== undefined) out[k] = s[k];
+  return out;
+}
+
 const main = async () => {
   const existingLlm = process.env.RETELL_OUTBOUND_LLM_ID;
 
@@ -66,13 +83,12 @@ const main = async () => {
       begin_message: spec.begin_message,
       general_tools: spec.general_tools
     }, "PATCH");
-    if (process.env.RETELL_OUTBOUND_AGENT_ID && spec.pronunciation_dictionary) {
-      console.log(`Updating agent ${process.env.RETELL_OUTBOUND_AGENT_ID} (pronunciation)…`);
-      await call(`/update-agent/${process.env.RETELL_OUTBOUND_AGENT_ID}`, {
-        pronunciation_dictionary: spec.pronunciation_dictionary
-      }, "PATCH");
+    const agentSettings = pickAgentSettings(spec);
+    if (process.env.RETELL_OUTBOUND_AGENT_ID && Object.keys(agentSettings).length) {
+      console.log(`Updating agent ${process.env.RETELL_OUTBOUND_AGENT_ID} (settings: ${Object.keys(agentSettings).join(", ")})…`);
+      await call(`/update-agent/${process.env.RETELL_OUTBOUND_AGENT_ID}`, agentSettings, "PATCH");
     }
-    console.log("\n✅ Updated in place. Outbound prompt + functions + pronunciation refreshed; agent unchanged.");
+    console.log("\n✅ Updated in place. Outbound prompt + functions + agent settings refreshed.");
     return;
   }
 
@@ -90,7 +106,7 @@ const main = async () => {
     voice_id: spec.voice_id,
     language: spec.language,
     agent_name: spec.agent_name,
-    ...(spec.pronunciation_dictionary ? { pronunciation_dictionary: spec.pronunciation_dictionary } : {})
+    ...pickAgentSettings(spec)
   });
 
   console.log("\n✅ Provisioned OUTBOUND Ava.");
