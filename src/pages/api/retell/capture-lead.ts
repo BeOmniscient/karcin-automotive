@@ -108,6 +108,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     consentCalls: true,
     consentTexts: true,
     consentEmails: Boolean(a.email),
+    source: "Karcin Voice AI — Inbound (Ava)",
+    tags: [
+      "Voice AI",
+      "Inbound Call",
+      ...(typeof a.lead_score === "number" ? [`Lead Score ${a.lead_score}`] : []),
+      ...(a.urgency ? [`Urgency: ${a.urgency}`] : []),
+    ],
   };
 
   const result = await submitVehicleRequest(payload);

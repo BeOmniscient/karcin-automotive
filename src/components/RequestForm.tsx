@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import { submitVehicleRequest, type VehicleRequestPayload } from "@/lib/ghlIntegration";
+import { type VehicleRequestPayload } from "@/lib/ghlIntegration";
 import { trackEvent } from "@/lib/analytics";
 
 type FormState = "idle" | "submitting" | "success" | "error";
@@ -33,15 +33,25 @@ export function RequestForm({ embedded = false }: { embedded?: boolean }) {
   const onSubmit = async (data: VehicleRequestPayload) => {
     setState("submitting");
     setErrorMessage(null);
-    const result = await submitVehicleRequest(data);
-    if (result.ok) {
-      setState("success");
-      trackEvent("vehicle_request_submitted", { intent: data.intent });
-      reset();
-      return;
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const result = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
+      if (res.ok && result.ok) {
+        setState("success");
+        trackEvent("vehicle_request_submitted", { intent: data.intent });
+        reset();
+        return;
+      }
+      setState("error");
+      setErrorMessage(result.error ?? "Something went wrong. Please try again.");
+    } catch {
+      setState("error");
+      setErrorMessage("Network error. Please try again.");
     }
-    setState("error");
-    setErrorMessage(result.error);
   };
 
   return (

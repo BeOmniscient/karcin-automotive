@@ -87,6 +87,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     consentCalls: !optedOut,
     consentTexts: !optedOut,
     consentEmails: false,
+    source: "Karcin Voice AI — Outbound (Ava)",
+    tags: [
+      "Voice AI",
+      "Outbound Call",
+      `Outcome: ${outcome}`,
+      ...(a.campaign ? [`Campaign: ${a.campaign}`] : []),
+      ...(typeof a.lead_score === "number" ? [`Lead Score ${a.lead_score}`] : []),
+    ],
   };
 
   const result = await submitVehicleRequest(payload);
