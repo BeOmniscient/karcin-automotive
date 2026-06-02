@@ -75,11 +75,25 @@ function normalizePhone(raw?: string): string {
   return raw ?? "";
 }
 
+/** Normalize a self-reported credit value to a single GHL tag for prioritization. */
+function creditTag(raw?: string): string {
+  const t = (raw ?? "").toLowerCase();
+  if (!t) return "";
+  if (t.includes("great")) return "Credit: Great";
+  if (t.includes("challeng")) return "Credit: Challenged";
+  if (t.includes("average")) return "Credit: Average";
+  if (t.includes("720")) return "Credit: Great";
+  if (t.includes("650")) return "Credit: Average";
+  return `Credit: ${raw}`;
+}
+
 function buildTags(p: VehicleRequestPayload): string[] {
   const tags = new Set<string>(["Karcin Lead", ...(p.tags ?? [])]);
   if (p.intent && p.intent !== "unsure") tags.add(`Intent: ${p.intent}`);
   if (p.hasTradeIn) tags.add("Trade-in");
   if (p.consentCalls === false) tags.add("DO NOT CALL");
+  const ct = creditTag(p.creditRange);
+  if (ct) tags.add(ct);
   return [...tags];
 }
 

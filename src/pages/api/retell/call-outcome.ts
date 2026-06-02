@@ -23,6 +23,7 @@ type RetellArgs = {
   campaign?: string;
   vehicle_interest?: string;
   budget_monthly?: string;
+  credit_category?: string;
   timeline?: string;
   has_trade_in?: boolean;
   callback_time?: string;
@@ -65,6 +66,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (a.callback_time) noteParts.push(`Requested callback: ${a.callback_time}.`);
   if (a.vehicle_interest) noteParts.push(`Vehicle: ${a.vehicle_interest}.`);
   if (a.budget_monthly) noteParts.push(`Target payment: ${a.budget_monthly}.`);
+  if (a.credit_category) noteParts.push(`Credit: ${a.credit_category}.`);
   if (a.timeline) noteParts.push(`Timeline: ${a.timeline}.`);
   if (typeof a.lead_score === "number") noteParts.push(`Lead score: ${a.lead_score}/5.`);
   if (optedOut) noteParts.push("DO NOT CALL — caller asked to be removed. Suppress from future outbound.");
@@ -80,6 +82,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     condition: "either",
     vehicleType: a.vehicle_interest,
     budgetRange: a.budget_monthly,
+    creditRange: a.credit_category,
     timeline: a.timeline,
     hasTradeIn: a.has_trade_in,
     notes: noteParts.join(" "),
