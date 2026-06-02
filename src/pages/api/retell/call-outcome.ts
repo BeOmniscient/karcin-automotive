@@ -27,6 +27,10 @@ type RetellArgs = {
   timeline?: string;
   has_trade_in?: boolean;
   callback_time?: string;
+  best_time_to_reach?: string;
+  preferred_contact_method?: string;
+  wants_text_follow_up?: boolean;
+  follow_up_action?: string;
   lead_score?: number;
   call_summary?: string;
   notes?: string;
@@ -64,6 +68,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (a.campaign) noteParts.push(`Campaign: ${a.campaign}.`);
   if (a.call_summary) noteParts.push(a.call_summary);
   if (a.callback_time) noteParts.push(`Requested callback: ${a.callback_time}.`);
+  if (a.best_time_to_reach) noteParts.push(`Best time to reach: ${a.best_time_to_reach}.`);
+  if (a.preferred_contact_method) noteParts.push(`Preferred contact: ${a.preferred_contact_method}.`);
+  if (a.wants_text_follow_up) noteParts.push("Open to text follow-up.");
+  if (a.follow_up_action) noteParts.push(`FOLLOW-UP ACTION: ${a.follow_up_action}`);
   if (a.vehicle_interest) noteParts.push(`Vehicle: ${a.vehicle_interest}.`);
   if (a.budget_monthly) noteParts.push(`Target payment: ${a.budget_monthly}.`);
   if (a.credit_category) noteParts.push(`Credit: ${a.credit_category}.`);
@@ -97,6 +105,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       `Outcome: ${outcome}`,
       ...(a.campaign ? [`Campaign: ${a.campaign}`] : []),
       ...(typeof a.lead_score === "number" ? [`Lead Score ${a.lead_score}`] : []),
+      ...(a.wants_text_follow_up ? ["Wants Text Follow-up"] : []),
     ],
   };
 

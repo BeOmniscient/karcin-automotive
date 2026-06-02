@@ -42,6 +42,12 @@ if (transfer && String(transfer?.transfer_destination?.number || "").includes("5
   console.warn("⚠️  transfer_to_human still uses a placeholder number — edit voice-ai/retell-agent-outbound.json before going live.");
 }
 
+// Post-call webhook (guaranteed end-to-end capture). Carries a secret query param.
+const webhookUrl = process.env.RETELL_WEBHOOK_SECRET
+  ? `${BASE_URL}/api/retell/webhook?key=${process.env.RETELL_WEBHOOK_SECRET}`
+  : null;
+if (!webhookUrl) console.warn("⚠️  RETELL_WEBHOOK_SECRET not set — agent will be created WITHOUT the post-call webhook.");
+
 async function call(path, body, method = "POST") {
   const res = await fetch(`${API}${path}`, {
     method,
@@ -66,10 +72,12 @@ function pickAgentSettings(s) {
     "interruption_sensitivity",
     "responsiveness",
     "voice_speed",
-    "voice_temperature"
+    "voice_temperature",
+    "post_call_analysis_data"
   ];
   const out = {};
   for (const k of keys) if (s[k] !== undefined) out[k] = s[k];
+  if (webhookUrl) out.webhook_url = webhookUrl;
   return out;
 }
 
