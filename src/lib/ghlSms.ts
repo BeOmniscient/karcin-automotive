@@ -124,3 +124,68 @@ export async function getRecentHistory(contactId: string, limit = 20): Promise<C
   // GHL returns newest-first; reverse to chronological.
   return turns.reverse().slice(-limit);
 }
+
+export type ConversationSummary = {
+  id: string;
+  contactId: string;
+  name: string;
+  lastMessage: string;
+  lastMessageDate: string;
+  unread: number;
+};
+
+/** List recent conversations for the inbox (newest first). */
+export async function listConversations(limit = 30): Promise<ConversationSummary[]> {
+  const res = await ghl(
+    `/conversations/search?locationId=${encodeURIComponent(locationId() || "")}&limit=${limit}&sortBy=last_message_date&sort=desc`,
+    V_CONV,
+    { method: "GET" },
+  );
+  if (!res.ok) return [];
+  const data = (await res.json().catch(() => ({}))) as {
+    conversations?: Array<Record<string, unknown>>;
+  };
+  const s = (v: unknown) => (v == null ? "" : String(v));
+  return (data.conversations ?? []).map((c) => ({
+    id: s(c.id),
+    contactId: s(c.contactId ?? c.contact_id),
+    name: s(c.fullName || c.contactName || c.name || c.email || c.phone || "Unknown"),
+    lastMessage: s(c.lastMessageBody || c.lastMessage || ""),
+    lastMessageDate: s(c.lastMessageDate || c.dateUpdated || ""),
+    unread: typeof c.unreadCount === "number" ? c.unreadCount : 0,
+  }));
+}
+
+export type DisplayMessage = { direction: "inbound" | "outbound"; body: string; date: string };
+
+/** Full message list for one contact's thread, chronological — for the inbox view. */
+export async function getConversationMessages(contactId: string, limit = 50): Promise<DisplayMessage[]> {
+  const searchRes = await ghl(
+    `/conversations/search?locationId=${encodeURIComponent(locationId() || "")}&contactId=${encodeURIComponent(contactId)}`,
+    V_CONV,
+    { method: "GET" },
+  );
+  if (!searchRes.ok) return [];
+  const search = (await searchRes.json().catch(() => ({}))) as { conversations?: Array<{ id?: string }> };
+  const conversationId = search.conversations?.[0]?.id;
+  if (!conversationId) return [];
+
+  const msgRes = await ghl(`/conversations/${conversationId}/messages?limit=${limit}`, V_CONV, { method: "GET" });
+  if (!msgRes.ok) return [];
+  const msgData = (await msgRes.json().catch(() => ({}))) as {
+    messages?: { messages?: Array<Record<string, unknown>> } | Array<Record<string, unknown>>;
+  };
+  const list = Array.isArray(msgData.messages) ? msgData.messages : msgData.messages?.messages ?? [];
+  const s = (v: unknown) => (v == null ? "" : String(v));
+  const out: DisplayMessage[] = [];
+  for (const m of list) {
+    const body = s(m.body).trim();
+    if (!body) continue;
+    out.push({
+      direction: m.direction === "inbound" ? "inbound" : "outbound",
+      body,
+      date: s(m.dateAdded || m.dateUpdated || ""),
+    });
+  }
+  return out.reverse();
+}
