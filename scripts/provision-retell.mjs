@@ -69,7 +69,14 @@ const main = async () => {
       begin_message: spec.begin_message,
       general_tools: spec.general_tools
     }, "PATCH");
-    console.log("\n✅ Updated in place. Prompt + functions refreshed; agent and phone number unchanged.");
+    // Agent-level settings (e.g. pronunciation) live on the agent, not the LLM.
+    if (process.env.RETELL_AGENT_ID && spec.pronunciation_dictionary) {
+      console.log(`Updating agent ${process.env.RETELL_AGENT_ID} (pronunciation)…`);
+      await call(`/update-agent/${process.env.RETELL_AGENT_ID}`, {
+        pronunciation_dictionary: spec.pronunciation_dictionary
+      }, "PATCH");
+    }
+    console.log("\n✅ Updated in place. Prompt + functions + pronunciation refreshed; agent and phone number unchanged.");
     return;
   }
 
@@ -86,7 +93,8 @@ const main = async () => {
     response_engine: { type: "retell-llm", llm_id: llm.llm_id },
     voice_id: spec.voice_id,
     language: spec.language,
-    agent_name: spec.agent_name
+    agent_name: spec.agent_name,
+    ...(spec.pronunciation_dictionary ? { pronunciation_dictionary: spec.pronunciation_dictionary } : {})
   });
 
   console.log("\n✅ Provisioned.");

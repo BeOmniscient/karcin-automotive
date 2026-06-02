@@ -66,7 +66,13 @@ const main = async () => {
       begin_message: spec.begin_message,
       general_tools: spec.general_tools
     }, "PATCH");
-    console.log("\n✅ Updated in place. Outbound prompt + functions refreshed; agent unchanged.");
+    if (process.env.RETELL_OUTBOUND_AGENT_ID && spec.pronunciation_dictionary) {
+      console.log(`Updating agent ${process.env.RETELL_OUTBOUND_AGENT_ID} (pronunciation)…`);
+      await call(`/update-agent/${process.env.RETELL_OUTBOUND_AGENT_ID}`, {
+        pronunciation_dictionary: spec.pronunciation_dictionary
+      }, "PATCH");
+    }
+    console.log("\n✅ Updated in place. Outbound prompt + functions + pronunciation refreshed; agent unchanged.");
     return;
   }
 
@@ -83,7 +89,8 @@ const main = async () => {
     response_engine: { type: "retell-llm", llm_id: llm.llm_id },
     voice_id: spec.voice_id,
     language: spec.language,
-    agent_name: spec.agent_name
+    agent_name: spec.agent_name,
+    ...(spec.pronunciation_dictionary ? { pronunciation_dictionary: spec.pronunciation_dictionary } : {})
   });
 
   console.log("\n✅ Provisioned OUTBOUND Ava.");
