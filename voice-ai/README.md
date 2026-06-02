@@ -1,6 +1,14 @@
-# Karcin Voice AI Receptionist — "Ava"
+# Karcin Voice AI — "Ava" (Inbound + Outbound)
 
-Inbound voice receptionist for Karcin Automotive, built on the same Retell pattern as the DeNovo "Margaux" hostess. Single-prompt agent: warm, soft-sell, never pushy. Her one non-negotiable job is to collect **first name, last name, and phone** on every call and hand a clean lead to the team.
+Two agents, same warm soft-sell persona and the same Retell pattern as DeNovo's "Margaux":
+- **Inbound** — answers calls to 973-218-4898. Collects name + phone, captures the lead.
+- **Outbound** — proactively calls web inquiries, past customers, and reminders.
+
+This file documents inbound; outbound is in the **[Outbound](#outbound-ava)** section below.
+
+## Inbound Ava
+
+Single-prompt agent: warm, soft-sell, never pushy. Her one non-negotiable job is to collect **first name, last name, and phone** on every call and hand a clean lead to the team.
 
 ## Files
 | File | What it is |
@@ -50,3 +58,57 @@ For each: confirm name + phone were collected, `capture_lead` fired (lead appear
 
 ## Compliance (baked into the prompt — keep it)
 No exact pricing, no inventory claims, no approval guarantees, no legal/credit advice. The begin message discloses the call may be recorded.
+
+---
+
+## Outbound Ava
+
+Proactive calls — Ava dials the customer. Same persona, different conversation: she confirms she reached the right person, identifies herself + Karcin, discloses recording, asks if it's a good time, and **honors opt-outs above everything**. One agent handles every campaign via dynamic variables.
+
+### Files
+| File | What it is |
+|---|---|
+| `retell-agent-outbound.json` | Outbound agent spec. Tools: `save_call_outcome`, `transfer_to_human`, `end_call`. Personalized with `{{first_name}}`, `{{campaign}}`, `{{call_reason}}`, `{{vehicle_interest}}`. |
+| `../scripts/provision-retell-outbound.mjs` | Create/update the outbound agent. |
+| `../scripts/place-call.mjs` | CLI to place one test call. |
+| `../src/pages/api/retell/place-call.ts` | Trigger calls programmatically (website/CRM/cron). Secret-protected. |
+| `../src/pages/api/retell/call-outcome.ts` | `save_call_outcome` webhook → GoHighLevel (every disposition, incl. do-not-call). |
+
+### Campaigns (the `campaign` variable)
+`web_inquiry` (someone filled the form) · `past_customer` (lease-end re-engagement) · `reminder` (appointment / lease-end / documents) · `general` (warm check-in).
+
+### Provision
+```bash
+# create:
+RETELL_API_KEY=key_xxx BASE_URL=https://www.karcinauto.com node scripts/provision-retell-outbound.mjs
+# update in place:
+RETELL_API_KEY=key_xxx RETELL_OUTBOUND_LLM_ID=llm_xxx BASE_URL=https://www.karcinauto.com node scripts/provision-retell-outbound.mjs
+```
+Save the printed IDs as `RETELL_OUTBOUND_AGENT_ID` / `RETELL_OUTBOUND_LLM_ID`.
+
+### Place a call
+
+CLI (testing):
+```bash
+RETELL_API_KEY=key_xxx RETELL_FROM_NUMBER=+1XXXXXXXXXX RETELL_OUTBOUND_AGENT_ID=agent_xxx \
+  node scripts/place-call.mjs --to +12015550144 --first-name Daniel \
+  --campaign web_inquiry --reason "You recently asked about a BMW X5 lease." --vehicle "BMW X5"
+```
+
+API (website / GHL / cron) — POST with the shared secret:
+```bash
+curl -X POST https://www.karcinauto.com/api/retell/place-call \
+  -H "Content-Type: application/json" -H "x-karcin-secret: $OUTBOUND_TRIGGER_SECRET" \
+  -d '{"to":"+12015550144","first_name":"Daniel","campaign":"web_inquiry",
+       "call_reason":"You recently asked about a BMW X5 lease.","vehicle_interest":"BMW X5"}'
+```
+A natural trigger: when the website vehicle-request form submits, also POST here to call the lead back within seconds.
+
+### Needed before placing real calls
+- [ ] `RETELL_FROM_NUMBER` — an outbound caller-ID number registered in Retell.
+- [ ] `RETELL_OUTBOUND_AGENT_ID` — from provisioning.
+- [ ] `OUTBOUND_TRIGGER_SECRET` — set in Vercel + sent by whatever calls `/api/retell/place-call`.
+- [ ] `NEXT_PUBLIC_GHL_FORM_WEBHOOK_URL` — so outcomes reach GoHighLevel.
+
+### Compliance (your responsibility)
+Outbound calling is regulated. Only call people who've consented (web inquiries, existing customers) and respect calling-hours and do-not-call rules. Ava identifies herself immediately, discloses recording, and instantly honors "stop calling / remove me" by flagging `do_not_call` — but suppression of future calls and consent/timing policy live in your dispatch logic and CRM, not in the agent.
