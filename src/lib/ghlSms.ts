@@ -156,6 +156,47 @@ export async function listConversations(limit = 30): Promise<ConversationSummary
   }));
 }
 
+/** Map GHL custom-field ids -> short keys (e.g. "lease_end_date"). */
+export async function getCustomFieldIndex(): Promise<Record<string, string>> {
+  const res = await ghl(`/locations/${locationId()}/customFields`, V_CONTACTS, { method: "GET" });
+  if (!res.ok) return {};
+  const data = (await res.json().catch(() => ({}))) as { customFields?: Array<{ id?: string; fieldKey?: string; name?: string }> };
+  const idx: Record<string, string> = {};
+  for (const f of data.customFields ?? []) {
+    if (!f.id) continue;
+    const key = (f.fieldKey || f.name || "").split(".").pop()?.trim().toLowerCase().replace(/\s+/g, "_") || "";
+    if (key) idx[f.id] = key;
+  }
+  return idx;
+}
+
+export type LeaseContact = {
+  id: string;
+  firstName?: string;
+  tags: string[];
+  fields: Record<string, string>;
+};
+
+/** Find contacts carrying a given tag, with their custom fields resolved by key. */
+export async function searchContactsByTag(tag: string, idToKey: Record<string, string>, limit = 100): Promise<LeaseContact[]> {
+  const res = await ghl(`/contacts/search`, V_CONTACTS, {
+    method: "POST",
+    body: JSON.stringify({ locationId: locationId(), pageLimit: limit, filters: [{ field: "tags", operator: "contains", value: tag }] }),
+  });
+  if (!res.ok) return [];
+  const data = (await res.json().catch(() => ({}))) as {
+    contacts?: Array<{ id?: string; firstName?: string; tags?: string[]; customFields?: Array<{ id?: string; value?: unknown }> }>;
+  };
+  return (data.contacts ?? []).map((c) => {
+    const fields: Record<string, string> = {};
+    for (const cf of c.customFields ?? []) {
+      const key = cf.id ? idToKey[cf.id] : undefined;
+      if (key && cf.value != null) fields[key] = String(cf.value);
+    }
+    return { id: String(c.id), firstName: c.firstName, tags: c.tags ?? [], fields };
+  });
+}
+
 export type DisplayMessage = { direction: "inbound" | "outbound"; body: string; date: string };
 
 /** Full message list for one contact's thread, chronological — for the inbox view. */
