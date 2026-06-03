@@ -197,6 +197,46 @@ export async function searchContactsByTag(tag: string, idToKey: Record<string, s
   });
 }
 
+/** Find a contact by phone number (E.164 preferred). */
+export async function findContactByPhone(phone: string): Promise<GhlContact | null> {
+  const res = await ghl(`/contacts/search`, V_CONTACTS, {
+    method: "POST",
+    body: JSON.stringify({ locationId: locationId(), pageLimit: 1, filters: [{ field: "phone", operator: "eq", value: phone }] }),
+  });
+  if (!res.ok) return null;
+  const data = (await res.json().catch(() => ({}))) as { contacts?: GhlContact[] };
+  return data.contacts?.[0] ?? null;
+}
+
+/** Find a contact by free-text query (name, email, phone). */
+export async function searchContacts(query: string, limit = 5): Promise<GhlContact[]> {
+  const res = await ghl(`/contacts/search`, V_CONTACTS, {
+    method: "POST",
+    body: JSON.stringify({ locationId: locationId(), pageLimit: limit, query }),
+  });
+  if (!res.ok) return [];
+  const data = (await res.json().catch(() => ({}))) as { contacts?: GhlContact[] };
+  return data.contacts ?? [];
+}
+
+/** Most recent note body on a contact (for caller context). */
+export async function getLatestNote(contactId: string): Promise<string> {
+  const res = await ghl(`/contacts/${contactId}/notes`, V_CONTACTS, { method: "GET" });
+  if (!res.ok) return "";
+  const data = (await res.json().catch(() => ({}))) as { notes?: Array<{ body?: string }> };
+  return (data.notes?.[0]?.body ?? "").trim();
+}
+
+/** Create a task (used by Ava's create_request to file work into GHL). */
+export async function createTask(contactId: string, title: string, body: string): Promise<boolean> {
+  const due = new Date(Date.now() + 86_400_000).toISOString();
+  const res = await ghl(`/contacts/${contactId}/tasks`, V_CONTACTS, {
+    method: "POST",
+    body: JSON.stringify({ title, body, dueDate: due, completed: false }),
+  });
+  return res.ok;
+}
+
 export type DisplayMessage = { direction: "inbound" | "outbound"; body: string; date: string };
 
 /** Full message list for one contact's thread, chronological — for the inbox view. */
