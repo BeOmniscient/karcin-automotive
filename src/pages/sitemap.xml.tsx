@@ -12,7 +12,7 @@ function xml(urls: string[]): string {
   const body = urls
     .map((u) => `  <url><loc>${SITE}/${u}</loc></url>`)
     .join("\n");
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemap.org/schemas/sitemap/0.9">\n${body}\n</urlset>`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>`;
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
